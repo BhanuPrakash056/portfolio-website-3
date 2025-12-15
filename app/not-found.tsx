@@ -31,6 +31,30 @@ const funnyQuotes = [
   {
     text: "Even Terraform can't provision this page",
     author: "Infrastructure as Code Enthusiast"
+  },
+  {
+    text: "My brother says he writes bug-free code. That's the biggest bug in his code.",
+    author: "BPR's Sibling (me)"
+  },
+  {
+    text: "BPR debugs his code by staring at it until it confesses",
+    author: "His Debugging Strategy"
+  },
+  {
+    text: "BPR's code reviews are like his jokes - they always have a punchline, but sometimes it takes a while to get it",
+    author: "His Dev Team (probably)"
+  },
+  {
+    text: "Why did BPR become a software engineer? Because 'Professional Code Whisperer' wasn't a real job title",
+    author: "Career Choices 101"
+  },
+  {
+    text: "BPR's favorite exercise? Running npm install. He says it's the only running he does.",
+    author: "Fitness Goals 2024"
+  },
+  {
+    text: "When BPR says 'it works on my machine', even his machine looks nervous",
+    author: "The Machine Speaks"
   }
 ]
 
@@ -356,28 +380,50 @@ export default function NotFound() {
                 </motion.span>
               </h3>
               
-              {/* Funny Joke Section */}
+              {/* Funny Joke Section - By BPR */}
               <motion.div 
-                className="mb-4 p-4 rounded-lg bg-background/50 border border-primary/10"
+                className="mb-4 p-4 rounded-lg bg-gradient-to-br from-background/80 via-primary/5 to-accent/5 border border-primary/20 shadow-lg"
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 1.3 }}
               >
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="text-lg">😂</span>
-                  <p className="text-xs font-semibold text-accent uppercase tracking-wider">
-                    Developer Joke of the Day
-                  </p>
+                <div className="flex items-center justify-between gap-2 mb-3">
+                  <div className="flex items-center gap-2">
+                    <span className="text-lg">😂</span>
+                    <p className="text-xs font-semibold text-accent uppercase tracking-wider">
+                      Developer Joke Special
+                    </p>
+                  </div>
+                  <motion.span 
+                    className="text-[10px] px-2 py-0.5 rounded-full bg-primary/20 text-primary font-mono"
+                    animate={{ opacity: [0.6, 1, 0.6] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                  >
+                    By BPR ⭐
+                  </motion.span>
                 </div>
+                
                 <p className="text-sm text-foreground font-medium mb-2">
                   Q: Why did the software engineer get stuck on this 404 page?
                 </p>
-                <p className="text-sm text-muted-foreground italic">
+                <p className="text-sm text-muted-foreground italic mb-3">
                   A: Because they couldn't <span className="text-primary font-mono">resolve()</span> the issue, 
                   and the page was in a <span className="text-accent font-mono">catch()</span> block... 
                   Now they're just <span className="text-purple-400 font-mono">async</span>-ing 
                   themselves why they clicked that link! 🤦‍♂️
                 </p>
+
+                <motion.div 
+                  className="mt-3 pt-3 border-t border-border/50"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 1.5 }}
+                >
+                  <p className="text-xs text-muted-foreground">
+                    👨‍💻 <span className="font-semibold text-foreground">Joke crafted by BPR</span> - my brother, a software engineer who debugs code by day and crafts dad jokes by night! 
+                  </p>
+                </motion.div>
+
                 <motion.div
                   className="mt-3 pt-3 border-t border-border/50 text-xs text-muted-foreground/60"
                   animate={{ opacity: [0.4, 0.7, 0.4] }}
@@ -456,6 +502,89 @@ export default function NotFound() {
               </p>
             </div>
           </div>
+        </motion.div>
+
+        {/* Blame BPR Section */}
+        <motion.div
+          className="mt-8 p-6 rounded-xl bg-gradient-to-r from-red-500/5 via-orange-500/5 to-yellow-500/5 border border-red-500/20 max-w-2xl mx-auto"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.2, duration: 0.6 }}
+        >
+          <motion.div 
+            className="flex items-start gap-4"
+            whileHover={{ scale: 1.02 }}
+            transition={{ duration: 0.2 }}
+          >
+            <motion.div
+              animate={{ 
+                rotate: [0, -10, 10, -10, 0],
+              }}
+              transition={{ 
+                duration: 0.5,
+                repeat: Infinity,
+                repeatDelay: 3,
+                ease: "easeInOut"
+              }}
+            >
+              <span className="text-3xl">🎯</span>
+            </motion.div>
+            <div className="flex-1">
+              <h3 className="text-lg font-bold text-red-500 mb-2 flex items-center gap-2">
+                <span>Root Cause Analysis</span>
+                <motion.span
+                  className="text-xs px-2 py-0.5 rounded-full bg-red-500/20 text-red-400 font-mono"
+                  animate={{ opacity: [0.5, 1, 0.5] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                >
+                  CRITICAL
+                </motion.span>
+              </h3>
+              <p className="text-sm text-muted-foreground mb-3 leading-relaxed">
+                After extensive investigation, log analysis, and multiple coffee breaks ☕, 
+                we've traced the source of this 404 error to...
+              </p>
+              <motion.div 
+                className="p-4 rounded-lg bg-red-500/10 border border-red-500/20 mb-3"
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 1.4 }}
+              >
+                <p className="text-base font-semibold text-foreground mb-2">
+                  🚨 <span className="text-red-500">Blame Assigned To:</span> My Brother (The Alleged "Software Engineer")
+                </p>
+                <p className="text-sm text-muted-foreground italic">
+                  Yes, the same guy who shares my DNA. The one with the fancy degree. The "I know how to code" sibling. 
+                  He said he'd "just push a quick fix" last Tuesday. This is the result. 🤦‍♂️
+                </p>
+              </motion.div>
+              <div className="space-y-2 text-xs text-muted-foreground/70">
+                <p className="flex items-center gap-2">
+                  <span className="text-red-500">▸</span>
+                  <span className="font-mono">git blame</span> output: 
+                  <span className="text-red-400 font-mono">The Guy Who Borrowed Mom's Laptop (100% of broken lines)</span>
+                </p>
+                <p className="flex items-center gap-2">
+                  <span className="text-orange-500">▸</span>
+                  Last commit message by The Keyboard Warrior: 
+                  <span className="text-orange-400 font-mono italic">"Fixed everything (I think) 🤞"</span>
+                </p>
+                <p className="flex items-center gap-2">
+                  <span className="text-yellow-500">▸</span>
+                  Tests run by That One Sibling: 
+                  <span className="text-yellow-400 font-mono">0 (testing is for the weak, apparently)</span>
+                </p>
+                <motion.p 
+                  className="flex items-center gap-2 mt-3 pt-3 border-t border-red-500/20"
+                  animate={{ opacity: [0.5, 1, 0.5] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                >
+                  <span className="text-red-500">💀</span>
+                  <span className="italic">Note: The Code Whisperer claims it's "a feature, not a bug". We're still investigating his sanity...</span>
+                </motion.p>
+              </div>
+            </div>
+          </motion.div>
         </motion.div>
       </div>
     </div>
