@@ -10,14 +10,22 @@ export function ThemeSwitcher() {
   useEffect(() => {
     const theme = localStorage.getItem("theme") || "dark"
     setIsDark(theme === "dark")
-    document.documentElement.classList.toggle("light", theme === "light")
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark")
+    } else {
+      document.documentElement.classList.remove("dark")
+    }
   }, [])
 
   const toggleTheme = () => {
     const newTheme = isDark ? "light" : "dark"
     setIsDark(!isDark)
     localStorage.setItem("theme", newTheme)
-    document.documentElement.classList.toggle("light", newTheme === "light")
+    if (newTheme === "dark") {
+      document.documentElement.classList.add("dark")
+    } else {
+      document.documentElement.classList.remove("dark")
+    }
   }
 
   return (

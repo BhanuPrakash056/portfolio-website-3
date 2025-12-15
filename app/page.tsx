@@ -15,7 +15,6 @@ import { CustomCursor } from "@/components/custom-cursor"
 import { ScrollProgress } from "@/components/scroll-progress"
 import { LoadingScreen } from "@/components/loading-screen"
 import { GradientMesh } from "@/components/gradient-mesh"
-import { ThemeSwitcher } from "@/components/theme-switcher"
 import { motion } from "framer-motion"
 import { useEffect } from "react"
 import Lenis from "@studio-freight/lenis"
@@ -52,7 +51,6 @@ export default function Portfolio() {
       <LoadingScreen />
       <CustomCursor />
       <ScrollProgress />
-      <ThemeSwitcher />
       
       <div className="min-h-screen bg-background text-foreground relative overflow-hidden">
         <GradientMesh />

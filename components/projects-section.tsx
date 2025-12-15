@@ -1,10 +1,12 @@
 "use client"
 
-import { motion } from "framer-motion"
+import { motion, useScroll, useTransform } from "framer-motion"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { AnimatedSection } from "./animated-section"
+import { TiltCard } from "./tilt-card"
 import { ExternalLink, Sparkles } from "lucide-react"
+import { useRef } from "react"
 
 const projects = [
   {
@@ -51,11 +53,21 @@ const cardVariants = {
 }
 
 export function ProjectsSection() {
+  const ref = useRef<HTMLElement>(null)
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  })
+  
+  const y1 = useTransform(scrollYProgress, [0, 1], [0, -120])
+  const y2 = useTransform(scrollYProgress, [0, 1], [0, 60])
+  
   return (
-    <section id="projects" className="py-24 px-4 relative overflow-hidden">
+    <section ref={ref} id="projects" className="py-24 px-4 relative overflow-hidden">
       {/* Animated background */}
       <motion.div
         className="absolute top-1/2 right-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl"
+        style={{ y: y1 }}
         animate={{
           x: [0, 100, 0],
           y: [0, -50, 0],
@@ -69,6 +81,7 @@ export function ProjectsSection() {
       />
       <motion.div
         className="absolute bottom-1/4 left-1/4 w-80 h-80 bg-accent/10 rounded-full blur-3xl"
+        style={{ y: y2 }}
         animate={{
           scale: [1, 1.3, 1],
           opacity: [0.3, 0.5, 0.3],
@@ -112,10 +125,10 @@ export function ProjectsSection() {
             <motion.div
               key={project.title}
               variants={cardVariants}
-              whileHover={{ y: -10 }}
               className="group h-full"
             >
-              <Card className="h-full bg-card/80 backdrop-blur border-primary/20 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/10 transition-all duration-300 overflow-hidden relative">
+              <TiltCard className="h-full">
+                <Card className="h-full bg-card/80 backdrop-blur border-primary/20 hover:border-primary/40 hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300 overflow-hidden relative">
                 {/* Gradient overlay */}
                 <motion.div
                   className={`absolute inset-0 bg-linear-to-br ${project.gradient} opacity-5 group-hover:opacity-15`}
@@ -180,7 +193,8 @@ export function ProjectsSection() {
                     <ExternalLink className="w-4 h-4" />
                   </motion.div>
                 </CardContent>
-              </Card>
+                </Card>
+              </TiltCard>
             </motion.div>
           ))}
         </motion.div>

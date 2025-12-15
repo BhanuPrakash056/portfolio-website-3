@@ -1,6 +1,6 @@
 "use client"
 
-import { motion } from "framer-motion"
+import { motion, useMotionValue, useSpring } from "framer-motion"
 import { useEffect, useState } from "react"
 
 interface Particle {
@@ -13,6 +13,11 @@ interface Particle {
 
 export function FloatingParticles() {
   const [particles, setParticles] = useState<Particle[]>([])
+  const mouseX = useMotionValue(50)
+  const mouseY = useMotionValue(50)
+  
+  const smoothMouseX = useSpring(mouseX, { stiffness: 50, damping: 20 })
+  const smoothMouseY = useSpring(mouseY, { stiffness: 50, damping: 20 })
 
   useEffect(() => {
     const newParticles: Particle[] = Array.from({ length: 30 }, (_, i) => ({
@@ -23,33 +28,49 @@ export function FloatingParticles() {
       duration: Math.random() * 15 + 10,
     }))
     setParticles(newParticles)
-  }, [])
+    
+    const handleMouseMove = (e: MouseEvent) => {
+      mouseX.set((e.clientX / window.innerWidth) * 100)
+      mouseY.set((e.clientY / window.innerHeight) * 100)
+    }
+    
+    window.addEventListener("mousemove", handleMouseMove)
+    return () => window.removeEventListener("mousemove", handleMouseMove)
+  }, [mouseX, mouseY])
 
   return (
     <div className="fixed inset-0 pointer-events-none overflow-hidden opacity-40">
-      {particles.map((particle) => (
-        <motion.div
-          key={particle.id}
-          className="absolute rounded-full bg-linear-to-br from-primary to-accent"
-          style={{
-            left: `${particle.x}%`,
-            top: `${particle.y}%`,
-            width: particle.size,
-            height: particle.size,
-          }}
-          animate={{
-            y: [0, -50, 0],
-            x: [0, Math.random() * 30 - 15, 0],
-            opacity: [0.3, 0.7, 0.3],
-            scale: [1, 1.2, 1],
-          }}
-          transition={{
-            duration: particle.duration,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-      ))}
+      {particles.map((particle) => {
+        // Calculate distance from cursor for magnetic effect
+        const distanceX = smoothMouseX.get() - particle.x
+        const distanceY = smoothMouseY.get() - particle.y
+        const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY)
+        const magneticStrength = Math.max(0, 1 - distance / 30) * 15
+        
+        return (
+          <motion.div
+            key={particle.id}
+            className="absolute rounded-full bg-gradient-to-br from-primary to-accent"
+            style={{
+              left: `${particle.x}%`,
+              top: `${particle.y}%`,
+              width: particle.size,
+              height: particle.size,
+            }}
+            animate={{
+              y: [0, -50, 0],
+              x: [0, Math.random() * 30 - 15 + (distanceX * magneticStrength / 100), 0],
+              opacity: [0.3, 0.7, 0.3],
+              scale: [1, 1.2, 1],
+            }}
+            transition={{
+              duration: particle.duration,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          />
+        )
+      })}
     </div>
   )
 }

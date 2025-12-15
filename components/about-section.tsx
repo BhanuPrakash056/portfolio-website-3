@@ -1,10 +1,12 @@
 "use client"
 
-import { motion } from "framer-motion"
+import { motion, useScroll, useTransform } from "framer-motion"
 import { Card, CardContent } from "@/components/ui/card"
 import { Rocket, Users, Target, CheckCircle2, Code2, Sparkles, User } from "lucide-react"
 import { AnimatedSection } from "./animated-section"
+import { TiltCard } from "./tilt-card"
 import { About3D } from "./about-3d"
+import { useRef } from "react"
 
 const highlights = [
   {
@@ -69,14 +71,24 @@ const cardVariants = {
 }
 
 export function AboutSection() {
+  const ref = useRef<HTMLElement>(null)
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  })
+  
+  const y1 = useTransform(scrollYProgress, [0, 1], [0, -80])
+  const y2 = useTransform(scrollYProgress, [0, 1], [0, 80])
+  
   return (
-    <section id="about" className="py-24 px-4 relative overflow-hidden">
+    <section ref={ref} id="about" className="py-24 px-4 relative overflow-hidden">
       {/* 3D Elements */}
       <About3D />
       
       {/* Animated background elements */}
       <motion.div
         className="absolute top-20 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl"
+        style={{ y: y1 }}
         animate={{
           scale: [1, 1.2, 1],
           opacity: [0.3, 0.5, 0.3],
@@ -90,6 +102,7 @@ export function AboutSection() {
       />
       <motion.div
         className="absolute bottom-20 left-0 w-80 h-80 bg-accent/5 rounded-full blur-3xl"
+        style={{ y: y2 }}
         animate={{
           scale: [1, 1.3, 1],
           opacity: [0.2, 0.4, 0.2],
@@ -146,9 +159,9 @@ export function AboutSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                whileHover={{ y: -5, scale: 1.02 }}
               >
-                <Card className="bg-card/80 backdrop-blur border-white/20 hover:border-white/40 hover:shadow-2xl transition-all duration-300 overflow-hidden group relative">
+                <TiltCard className="h-full">
+                  <Card className="bg-card/80 backdrop-blur border-white/20 hover:border-white/40 hover:shadow-2xl transition-all duration-300 overflow-hidden group relative h-full">
                   <motion.div
                     className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100"
                     transition={{ duration: 0.3 }}
@@ -170,6 +183,7 @@ export function AboutSection() {
                     <div className="text-xs md:text-sm text-muted-foreground font-medium">{stat.label}</div>
                   </CardContent>
                 </Card>
+                </TiltCard>
               </motion.div>
             ))}
           </div>

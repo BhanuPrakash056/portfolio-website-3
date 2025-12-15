@@ -1,10 +1,11 @@
 "use client"
 
-import { motion } from "framer-motion"
+import { motion, useScroll, useTransform } from "framer-motion"
 import { Badge } from "@/components/ui/badge"
 import { AnimatedSection } from "./animated-section"
 import { Code2, Cloud, Wrench, Brain } from "lucide-react"
 import { Card3D } from "./card-3d"
+import { useRef } from "react"
 
 const skillCategories = [
   {
@@ -58,11 +59,21 @@ const cardVariants = {
 }
 
 export function SkillsSection() {
+  const ref = useRef<HTMLElement>(null)
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  })
+  
+  const y1 = useTransform(scrollYProgress, [0, 1], [0, -100])
+  const y2 = useTransform(scrollYProgress, [0, 1], [0, 100])
+  
   return (
-    <section id="skills" className="py-24 px-4 bg-muted/30 relative overflow-hidden">
+    <section ref={ref} id="skills" className="py-24 px-4 bg-muted/30 relative overflow-hidden">
       {/* Background decoration */}
       <motion.div
         className="absolute bottom-0 left-0 w-96 h-96 bg-accent/10 rounded-full blur-3xl"
+        style={{ y: y1 }}
         animate={{
           scale: [1, 1.3, 1],
           opacity: [0.3, 0.5, 0.3],
@@ -75,6 +86,7 @@ export function SkillsSection() {
       />
       <motion.div
         className="absolute top-1/4 right-0 w-80 h-80 bg-primary/10 rounded-full blur-3xl"
+        style={{ y: y2 }}
         animate={{
           scale: [1, 1.2, 1],
           x: [0, -30, 0],

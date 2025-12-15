@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Download, Mail, Linkedin, Github, ChevronDown, Sparkles } from "lucide-react"
 import Link from "next/link"
 import { Scene3D } from "./scene-3d"
+import { MagneticButton } from "./magnetic-button"
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -136,30 +137,34 @@ export function HeroSection({ scrollToSection }: { scrollToSection: (id: string)
           className="flex flex-wrap items-center justify-center gap-3 md:gap-4 mb-12"
           variants={itemVariants}
         >
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <Button size="lg" onClick={() => scrollToSection("contact")} className="group relative overflow-hidden min-h-11 touch-manipulation">
-              <span className="relative z-10">Get In Touch</span>
-              <motion.div
-                className="absolute inset-0 bg-linear-to-r from-primary to-accent"
-                initial={{ x: "-100%" }}
-                whileHover={{ x: "0%" }}
-                transition={{ duration: 0.3 }}
-              />
-            </Button>
-          </motion.div>
+          <MagneticButton strength={0.4}>
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Button size="lg" onClick={() => scrollToSection("contact")} className="group relative overflow-hidden min-h-11 touch-manipulation">
+                <span className="relative z-10">Get In Touch</span>
+                <motion.div
+                  className="absolute inset-0 bg-linear-to-r from-primary to-accent"
+                  initial={{ x: "-100%" }}
+                  whileHover={{ x: "0%" }}
+                  transition={{ duration: 0.3 }}
+                />
+              </Button>
+            </motion.div>
+          </MagneticButton>
           
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <Button size="lg" variant="outline" className="group min-h-11 touch-manipulation">
-              <Download className="mr-2 w-4 h-4 group-hover:animate-bounce" />
-              Download Resume
+          <MagneticButton strength={0.4}>
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Button size="lg" variant="outline" className="group min-h-11 touch-manipulation">
+                <Download className="mr-2 w-4 h-4 group-hover:animate-bounce" />
+                Download Resume
             </Button>
           </motion.div>
+          </MagneticButton>
         </motion.div>
 
         <motion.div

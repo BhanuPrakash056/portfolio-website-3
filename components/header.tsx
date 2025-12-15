@@ -44,8 +44,9 @@ export function Header() {
     { name: "About", id: "about" },
     { name: "Certifications", id: "certifications" },
     { name: "Skills", id: "skills" },
-    { name: "Projects", id: "projects" },
     { name: "Experience", id: "experience" },
+    { name: "Projects", id: "projects" },
+    { name: "Publications", id: "publications" },
     { name: "Contact", id: "contact" },
   ]
 
@@ -105,8 +106,10 @@ export function Header() {
                 whileTap={{ scale: 0.95 }}
               >
                 <span
-                  className={`relative z-10 ${
-                    activeSection === link.id ? "text-foreground" : "text-muted-foreground"
+                  className={`relative z-10 transition-colors duration-300 ${
+                    activeSection === link.id 
+                      ? "text-foreground font-semibold" 
+                      : "text-muted-foreground hover:text-foreground"
                   }`}
                 >
                   {link.name}
@@ -114,14 +117,21 @@ export function Header() {
                 {activeSection === link.id && (
                   <motion.div
                     layoutId="activeSection"
-                    className="absolute inset-0 bg-primary/20 rounded-lg border border-primary/30"
+                    className="absolute inset-0 bg-gradient-to-r from-primary/25 to-accent/25 rounded-lg border-2 border-primary/50 shadow-lg shadow-primary/20"
+                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                  />
+                )}
+                {activeSection === link.id && (
+                  <motion.div
+                    layoutId="activeDot"
+                    className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-primary rounded-full shadow-lg shadow-primary/50"
                     transition={{ type: "spring", stiffness: 380, damping: 30 }}
                   />
                 )}
                 <motion.div
                   className="absolute bottom-0 left-0 right-0 h-0.5 bg-linear-to-r from-primary to-accent"
                   initial={{ scaleX: 0 }}
-                  whileHover={{ scaleX: 1 }}
+                  whileHover={{ scaleX: activeSection !== link.id ? 1 : 0 }}
                   transition={{ duration: 0.3 }}
                 />
               </motion.button>
