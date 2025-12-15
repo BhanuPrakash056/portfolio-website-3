@@ -402,6 +402,42 @@ export function ComingSoon() {
               🎉 Here's to my sister - may your uptime be 100%, your deployments smooth, and your coffee always hot! ☕
             </p>
           </motion.div>
+
+          {/* Heartfelt message */}
+          <motion.div
+            className="mt-6 p-5 rounded-xl bg-gradient-to-r from-blue-500/10 to-cyan-500/10 border border-blue-500/20"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 2.6, duration: 0.6 }}
+          >
+            <div className="text-center space-y-3">
+              <motion.div
+                animate={{ rotate: [0, 10, -10, 0] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+              >
+                <span className="text-4xl">🤝</span>
+              </motion.div>
+              <p className="text-base font-semibold text-foreground">
+                No matter what challenges you face, what dreams you chase, or what path you take...
+              </p>
+              <p className="text-lg font-bold bg-gradient-to-r from-blue-400 via-cyan-400 to-teal-400 bg-clip-text text-transparent">
+                Your brother will always be there for you. 💙
+              </p>
+              <p className="text-sm text-muted-foreground italic">
+                Whether you need support, encouragement, or just someone to celebrate your wins with - 
+                I've got your back, always and forever. That's a promise! 🚀
+              </p>
+              <motion.div
+                className="flex items-center justify-center gap-3 mt-4"
+                animate={{ scale: [1, 1.05, 1] }}
+                transition={{ duration: 2, repeat: Infinity }}
+              >
+                <span className="text-2xl">👦</span>
+                <span className="text-accent text-xl">❤️</span>
+                <span className="text-2xl">👩</span>
+              </motion.div>
+            </div>
+          </motion.div>
         </motion.div>
 
         {/* Animated loading dots */}
