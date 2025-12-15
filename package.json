@@ -6,7 +6,7 @@
     "build": "next build",
     "dev": "next dev",
     "lint": "eslint .",
-    "start": "next start"
+    "start": "npx serve@latest out"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
