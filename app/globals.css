@@ -158,3 +158,23 @@
 .animate-pulse-slow {
   animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
+
+/* Ensure seamless section transitions */
+body {
+  background-attachment: fixed;
+}
+
+/* Hide default cursor only on non-touch devices */
+@media (hover: hover) and (pointer: fine) {
+  body {
+    cursor: none !important;
+  }
+  
+  * {
+    cursor: none !important;
+  }
+}
+
+section {
+  background: transparent !important;
+}

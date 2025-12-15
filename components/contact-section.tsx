@@ -63,11 +63,11 @@ export function ContactSection() {
             </motion.div>
 
             <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-linear-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent">
-              Get In Touch
+              Let's Build Something Amazing
             </h2>
             <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-              I'm always open to discussing new opportunities, collaborations, or just having a chat about cloud
-              technologies and innovation.
+              I'm always excited to discuss new opportunities, collaborate on innovative projects, or connect with fellow cloud enthusiasts.
+              Whether you're looking for a dedicated cloud engineer or just want to talk about the latest in cloud technologies, I'd love to hear from you!
             </p>
           </motion.div>
         </AnimatedSection>

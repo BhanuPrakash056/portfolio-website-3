@@ -12,6 +12,12 @@ export const metadata: Metadata = {
   description:
     "Jr. Hybrid Cloud Ops Engineer specializing in Azure, Kubernetes, and Terraform. Portfolio showcasing cloud computing projects, certifications, and expertise.",
   generator: "v0.app",
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
+    maximumScale: 5,
+    userScalable: true,
+  },
   icons: {
     icon: [
       {

@@ -2,7 +2,7 @@
 
 import { Canvas, useFrame } from "@react-three/fiber"
 import { OrbitControls, Float, Sphere, MeshDistortMaterial, Stars } from "@react-three/drei"
-import { useRef } from "react"
+import { useRef, useState, useEffect } from "react"
 import * as THREE from "three"
 
 function AnimatedSphere() {
@@ -54,9 +54,29 @@ function CodeSymbol({ position }: { position: [number, number, number] }) {
 }
 
 export function Scene3D() {
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768 || 'ontouchstart' in window || navigator.maxTouchPoints > 0)
+    }
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
+
+  // Don't render 3D scene on mobile for better performance
+  if (isMobile) {
+    return (
+      <div className="absolute inset-0 -z-10">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5" />
+      </div>
+    )
+  }
+
   return (
     <div className="absolute inset-0 -z-10">
-      <Canvas camera={{ position: [0, 0, 5], fov: 50 }}>
+      <Canvas camera={{ position: [0, 0, 5], fov: 50 }} dpr={[1, 2]} performance={{ min: 0.5 }}>
         <ambientLight intensity={0.5} />
         <pointLight position={[10, 10, 10]} intensity={1} color="#6366f1" />
         <pointLight position={[-10, -10, -10]} intensity={0.5} color="#60a5fa" />

@@ -10,14 +10,14 @@ const publications = [
   {
     publisher: "Springer - LNDECT Series",
     title: "Adoption of Cloud Computing and Relevant Technologies: Benefits, Challenges and Solutions",
-    description: "Published in Springer's Lecture Notes on Data Engineering and Communications Technologies",
+    description: "Comprehensive analysis of cloud computing adoption trends, examining the strategic benefits, implementation challenges, and practical solutions for enterprise cloud migration. Published in Springer's prestigious Lecture Notes on Data Engineering and Communications Technologies series.",
     url: "https://link.springer.com/chapter/10.1007/978-981-99-3481-2_35",
     color: "from-blue-500 to-cyan-500",
   },
   {
     publisher: "Springer - LNDECT Series",
     title: "Detailed Study on Deep Learning Methodologies in Medical Imaging for Disease Identification",
-    description: "Research on applying deep learning techniques to medical image analysis",
+    description: "In-depth research exploring state-of-the-art deep learning architectures and methodologies for automated disease detection in medical imaging. Investigates CNN, transfer learning, and advanced neural network techniques for improving diagnostic accuracy and healthcare outcomes.",
     url: "https://link.springer.com/chapter/10.1007/978-981-99-3481-2_33",
     color: "from-purple-500 to-pink-500",
   },

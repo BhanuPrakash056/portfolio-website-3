@@ -2,7 +2,7 @@
 
 import { Canvas, useFrame } from "@react-three/fiber"
 import { Float, Text3D, Center, MeshDistortMaterial } from "@react-three/drei"
-import { useRef } from "react"
+import { useRef, useState, useEffect } from "react"
 import * as THREE from "three"
 
 function FloatingCube({ position, color }: { position: [number, number, number], color: string }) {
@@ -32,9 +32,23 @@ function FloatingCube({ position, color }: { position: [number, number, number],
 }
 
 export function About3D() {
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768 || 'ontouchstart' in window)
+    }
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
+
+  // Don't render on mobile for better performance
+  if (isMobile) return null
+
   return (
-    <div className="absolute right-0 top-0 w-96 h-96 opacity-40 pointer-events-none">
-      <Canvas camera={{ position: [0, 0, 3], fov: 50 }}>
+    <div className="absolute right-0 top-0 w-96 h-96 opacity-40 pointer-events-none hidden md:block">
+      <Canvas camera={{ position: [0, 0, 3], fov: 50 }} dpr={[1, 2]} performance={{ min: 0.5 }}>
         <ambientLight intensity={0.5} />
         <pointLight position={[5, 5, 5]} intensity={1} color="#6366f1" />
         

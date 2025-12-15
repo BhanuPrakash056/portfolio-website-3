@@ -130,7 +130,8 @@ export function AboutSection() {
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
             >
-              Cloud Operations Engineer passionate about building scalable infrastructure and innovative solutions
+              Experienced Cloud Operations Engineer specializing in hybrid cloud infrastructure, DevOps automation, and enterprise-scale cloud solutions.
+              Dedicated to delivering reliable, secure, and high-performance cloud architectures.
             </motion.p>
           </div>
         </AnimatedSection>

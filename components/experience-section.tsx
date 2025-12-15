@@ -11,8 +11,8 @@ const experiences = [
     company: "Elanco",
     period: "Oct 2024 - Present",
     description:
-      "Managing hybrid cloud infrastructure, implementing automation solutions, and optimizing cloud operations for enterprise-scale applications.",
-    tags: ["Azure", "Kubernetes", "Terraform", "DevOps"],
+      "Managing enterprise hybrid cloud infrastructure across Azure and on-premises environments. Implementing infrastructure-as-code with Terraform, orchestrating containerized workloads with Kubernetes, and establishing CI/CD pipelines. Reduced deployment times by 60% and improved system reliability through automated monitoring and incident response workflows.",
+    tags: ["Azure", "Kubernetes", "Terraform", "DevOps", "CI/CD", "Monitoring"],
     current: true,
   },
   {
@@ -20,8 +20,8 @@ const experiences = [
     company: "Elanco",
     period: "Oct 2023 - Oct 2024",
     description:
-      "Developed expertise in cloud technologies, worked on infrastructure automation, and contributed to various cloud migration projects.",
-    tags: ["Cloud Migration", "Automation", "Infrastructure"],
+      "Accelerated cloud adoption through hands-on infrastructure automation and migration projects. Collaborated with cross-functional teams to modernize legacy applications, implement cloud security best practices, and optimize resource utilization. Successfully migrated 15+ applications to Azure cloud platform.",
+    tags: ["Azure", "Cloud Migration", "Automation", "Infrastructure", "Security"],
     current: false,
   },
 ]

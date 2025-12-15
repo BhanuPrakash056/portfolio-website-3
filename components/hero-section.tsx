@@ -128,19 +128,19 @@ export function HeroSection({ scrollToSection }: { scrollToSection: (id: string)
           className="text-base md:text-lg text-muted-foreground mb-12 max-w-2xl mx-auto leading-relaxed"
           variants={itemVariants}
         >
-          Building scalable cloud solutions with Azure, Terraform, and Kubernetes. Passionate about cloud computing,
-          machine learning, and innovative technology.
+          Architecting and managing enterprise-scale hybrid cloud infrastructure with Azure, Terraform, and Kubernetes.
+          Passionate about cloud-native technologies, infrastructure automation, and driving digital transformation through innovative solutions.
         </motion.p>
 
         <motion.div
-          className="flex flex-wrap items-center justify-center gap-4 mb-12"
+          className="flex flex-wrap items-center justify-center gap-3 md:gap-4 mb-12"
           variants={itemVariants}
         >
           <motion.div
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <Button size="lg" onClick={() => scrollToSection("contact")} className="group relative overflow-hidden">
+            <Button size="lg" onClick={() => scrollToSection("contact")} className="group relative overflow-hidden min-h-11 touch-manipulation">
               <span className="relative z-10">Get In Touch</span>
               <motion.div
                 className="absolute inset-0 bg-linear-to-r from-primary to-accent"
@@ -155,7 +155,7 @@ export function HeroSection({ scrollToSection }: { scrollToSection: (id: string)
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <Button size="lg" variant="outline" className="group">
+            <Button size="lg" variant="outline" className="group min-h-11 touch-manipulation">
               <Download className="mr-2 w-4 h-4 group-hover:animate-bounce" />
               Download Resume
             </Button>
@@ -180,30 +180,31 @@ export function HeroSection({ scrollToSection }: { scrollToSection: (id: string)
               <Link
                 href={social.href}
                 target={social.label !== "Email" ? "_blank" : undefined}
-                className="text-muted-foreground hover:text-foreground transition-colors"
+                className="text-muted-foreground hover:text-foreground transition-colors p-2 flex items-center justify-center min-w-11 min-h-11 touch-manipulation"
               >
                 <social.icon className="w-6 h-6" />
               </Link>
             </motion.div>
           ))}
         </motion.div>
-
-        <motion.button
-          onClick={() => scrollToSection("about")}
-          className="absolute bottom-12 left-1/2 -translate-x-1/2 text-muted-foreground hover:text-primary transition-colors cursor-pointer"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1, duration: 0.8 }}
-          whileHover={{ scale: 1.2 }}
-        >
-          <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-          >
-            <ChevronDown className="w-8 h-8" />
-          </motion.div>
-        </motion.button>
       </motion.div>
+
+      {/* Scroll down button - positioned at bottom of hero section */}
+      <motion.button
+        onClick={() => scrollToSection("about")}
+        className="absolute bottom-12 left-1/2 -translate-x-1/2 text-muted-foreground hover:text-primary transition-colors cursor-pointer z-20 p-2 min-h-11 min-w-11 flex items-center justify-center touch-manipulation"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1, duration: 0.8 }}
+        whileHover={{ scale: 1.2 }}
+      >
+        <motion.div
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <ChevronDown className="w-8 h-8" />
+        </motion.div>
+      </motion.button>
     </section>
   )
 }
