@@ -6,6 +6,7 @@ import { Download, Mail, Linkedin, Github, ChevronDown, Sparkles } from "lucide-
 import Link from "next/link"
 import { Scene3D } from "./scene-3d"
 import { MagneticButton } from "./magnetic-button"
+import { usePerformance } from "@/hooks/use-performance"
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -14,6 +15,16 @@ const containerVariants = {
     transition: {
       staggerChildren: 0.15,
       delayChildren: 0.3,
+    },
+  },
+}
+
+const containerVariantsReduced = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      duration: 0.3,
     },
   },
 }
@@ -30,6 +41,16 @@ const itemVariants = {
   },
 }
 
+const itemVariantsReduced = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      duration: 0.2,
+    },
+  },
+}
+
 const floatingVariants = {
   animate: {
     y: [0, -20, 0],
@@ -42,47 +63,57 @@ const floatingVariants = {
 }
 
 export function HeroSection({ scrollToSection }: { scrollToSection: (id: string) => void }) {
+  const performance = usePerformance()
+  const variants = performance.reducedMotion ? containerVariantsReduced : containerVariants
+  const itemVars = performance.reducedMotion ? itemVariantsReduced : itemVariants
+  
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center px-4 overflow-hidden">
-      {/* 3D Scene Background */}
-      <Scene3D />
+      {/* 3D Scene Background - only on high-end devices */}
+      {performance.enable3D && <Scene3D />}
       
       {/* Animated gradient background */}
       <div className="absolute inset-0 bg-linear-to-br from-primary/10 via-transparent to-accent/10 pointer-events-none" />
       
-      {/* Large gradient orbs */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl animate-pulse" />
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }} />
+      {/* Large gradient orbs - only with animations enabled */}
+      {performance.enableHeavyAnimations && (
+        <>
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl animate-pulse" />
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }} />
+        </>
+      )}
       
-      {/* Animated grid */}
-      <motion.div
-        className="absolute inset-0 opacity-[0.05]"
-        style={{
-          backgroundImage: `radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)`,
-          backgroundSize: "50px 50px",
-        }}
-        animate={{
-          backgroundPosition: ["0px 0px", "50px 50px"],
-        }}
-        transition={{
-          duration: 20,
-          repeat: Infinity,
-          ease: "linear",
-        }}
-      />
+      {/* Animated grid - only with animations enabled */}
+      {performance.enableHeavyAnimations && (
+        <motion.div
+          className="absolute inset-0 opacity-[0.05]"
+          style={{
+            backgroundImage: `radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)`,
+            backgroundSize: "50px 50px",
+          }}
+          animate={{
+            backgroundPosition: ["0px 0px", "50px 50px"],
+          }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            ease: "linear",
+          }}
+        />
+      )}
 
       <motion.div
         className="container mx-auto text-center max-w-4xl relative z-10"
-        variants={containerVariants}
+        variants={variants}
         initial="hidden"
         animate="visible"
       >
         {/* Sparkle effect */}
         <motion.div
           className="inline-flex items-center gap-2 px-4 py-2 mb-8 rounded-full bg-primary/10 border border-primary/20"
-          initial={{ opacity: 0, scale: 0.8 }}
+          initial={{ opacity: 0, scale: performance.reducedMotion ? 1 : 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: performance.reducedMotion ? 0.2 : 0.5 }}
         >
           <Sparkles className="w-4 h-4 text-primary" />
           <span className="text-sm font-medium">Available for opportunities</span>
@@ -90,16 +121,16 @@ export function HeroSection({ scrollToSection }: { scrollToSection: (id: string)
 
         <motion.h1
           className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6"
-          variants={itemVariants}
+          variants={itemVars}
         >
           <span className="inline-block bg-linear-to-r from-foreground via-foreground to-muted-foreground bg-clip-text text-transparent">
             Anusha
           </span>{" "}
           <motion.span
             className="inline-block bg-linear-to-r from-primary via-accent to-primary bg-clip-text text-transparent"
-            animate={{
+            animate={performance.enableHeavyAnimations ? {
               backgroundPosition: ["0%", "100%", "0%"],
-            }}
+            } : {}}
             transition={{
               duration: 5,
               repeat: Infinity,
@@ -115,7 +146,7 @@ export function HeroSection({ scrollToSection }: { scrollToSection: (id: string)
 
         <motion.div
           className="space-y-4 mb-8"
-          variants={itemVariants}
+          variants={itemVars}
         >
           <p className="text-2xl md:text-3xl font-semibold bg-linear-to-r from-foreground to-muted-foreground bg-clip-text text-transparent">
             Jr. Hybrid Cloud Ops Engineer
@@ -127,7 +158,7 @@ export function HeroSection({ scrollToSection }: { scrollToSection: (id: string)
 
         <motion.p
           className="text-base md:text-lg text-muted-foreground mb-12 max-w-2xl mx-auto leading-relaxed"
-          variants={itemVariants}
+          variants={itemVars}
         >
           Architecting and managing enterprise-scale hybrid cloud infrastructure with Azure, Terraform, and Kubernetes.
           Passionate about cloud-native technologies, infrastructure automation, and driving digital transformation through innovative solutions.
@@ -135,41 +166,54 @@ export function HeroSection({ scrollToSection }: { scrollToSection: (id: string)
 
         <motion.div
           className="flex flex-wrap items-center justify-center gap-3 md:gap-4 mb-12"
-          variants={itemVariants}
+          variants={itemVars}
         >
-          <MagneticButton strength={0.4}>
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Button size="lg" onClick={() => scrollToSection("contact")} className="group relative overflow-hidden min-h-11 touch-manipulation">
-                <span className="relative z-10">Get In Touch</span>
-                <motion.div
-                  className="absolute inset-0 bg-linear-to-r from-primary to-accent"
-                  initial={{ x: "-100%" }}
-                  whileHover={{ x: "0%" }}
-                  transition={{ duration: 0.3 }}
-                />
-              </Button>
-            </motion.div>
-          </MagneticButton>
-          
-          <MagneticButton strength={0.4}>
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Button size="lg" variant="outline" className="group min-h-11 touch-manipulation">
-                <Download className="mr-2 w-4 h-4 group-hover:animate-bounce" />
-                Download Resume
+          {performance.enableHeavyAnimations ? (
+            <MagneticButton strength={0.4}>
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Button size="lg" onClick={() => scrollToSection("contact")} className="group relative overflow-hidden min-h-11 touch-manipulation">
+                  <span className="relative z-10">Get In Touch</span>
+                  <motion.div
+                    className="absolute inset-0 bg-linear-to-r from-primary to-accent"
+                    initial={{ x: "-100%" }}
+                    whileHover={{ x: "0%" }}
+                    transition={{ duration: 0.3 }}
+                  />
+                </Button>
+              </motion.div>
+            </MagneticButton>
+          ) : (
+            <Button size="lg" onClick={() => scrollToSection("contact")} className="min-h-11 touch-manipulation">
+              Get In Touch
             </Button>
-          </motion.div>
-          </MagneticButton>
+          )}
+          
+          {performance.enableHeavyAnimations ? (
+            <MagneticButton strength={0.4}>
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Button size="lg" variant="outline" className="group min-h-11 touch-manipulation">
+                  <Download className="mr-2 w-4 h-4 group-hover:animate-bounce" />
+                  Download Resume
+                </Button>
+              </motion.div>
+            </MagneticButton>
+          ) : (
+            <Button size="lg" variant="outline" className="min-h-11 touch-manipulation">
+              <Download className="mr-2 w-4 h-4" />
+              Download Resume
+            </Button>
+          )}
         </motion.div>
 
         <motion.div
           className="flex items-center justify-center gap-6"
-          variants={itemVariants}
+          variants={itemVars}
         >
           {[
             { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
@@ -178,8 +222,8 @@ export function HeroSection({ scrollToSection }: { scrollToSection: (id: string)
           ].map((social, index) => (
             <motion.div
               key={social.label}
-              whileHover={{ scale: 1.2 }}
-              whileTap={{ scale: 0.9 }}
+              whileHover={performance.enableHeavyAnimations ? { scale: 1.2 } : undefined}
+              whileTap={performance.enableHeavyAnimations ? { scale: 0.9 } : undefined}
               transition={{ type: "spring", stiffness: 400, damping: 17 }}
             >
               <Link
@@ -198,17 +242,21 @@ export function HeroSection({ scrollToSection }: { scrollToSection: (id: string)
       <motion.button
         onClick={() => scrollToSection("about")}
         className="absolute bottom-12 left-1/2 -translate-x-1/2 text-muted-foreground hover:text-primary transition-colors cursor-pointer z-20 p-2 min-h-11 min-w-11 flex items-center justify-center touch-manipulation"
-        initial={{ opacity: 0, y: -20 }}
+        initial={{ opacity: 0, y: performance.reducedMotion ? 0 : -20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1, duration: 0.8 }}
-        whileHover={{ scale: 1.2 }}
+        transition={{ delay: performance.reducedMotion ? 0 : 1, duration: performance.reducedMotion ? 0.2 : 0.8 }}
+        whileHover={performance.enableHeavyAnimations ? { scale: 1.2 } : undefined}
       >
-        <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-        >
+        {performance.enableHeavyAnimations ? (
+          <motion.div
+            animate={{ y: [0, 10, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <ChevronDown className="w-8 h-8" />
+          </motion.div>
+        ) : (
           <ChevronDown className="w-8 h-8" />
-        </motion.div>
+        )}
       </motion.button>
     </section>
   )

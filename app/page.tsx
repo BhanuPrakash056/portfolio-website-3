@@ -18,15 +18,20 @@ import { GradientMesh } from "@/components/gradient-mesh"
 import { motion } from "framer-motion"
 import { useEffect } from "react"
 import Lenis from "@studio-freight/lenis"
+import { usePerformance } from "@/hooks/use-performance"
 
 export default function Portfolio() {
+  const performance = usePerformance()
+  
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id)
     element?.scrollIntoView({ behavior: "smooth" })
   }
 
-  // Initialize Lenis smooth scroll with instant scrolling
+  // Initialize Lenis smooth scroll - only if not reduced motion
   useEffect(() => {
+    if (performance.reducedMotion) return
+    
     const lenis = new Lenis({
       duration: 0,
       easing: (t) => t,
@@ -44,17 +49,17 @@ export default function Portfolio() {
     return () => {
       lenis.destroy()
     }
-  }, [])
+  }, [performance.reducedMotion])
 
   return (
     <>
-      <LoadingScreen />
-      <CustomCursor />
+      {performance.enableHeavyAnimations && <LoadingScreen />}
+      {performance.enableHeavyAnimations && <CustomCursor />}
       <ScrollProgress />
       
       <div className="min-h-screen bg-background text-foreground relative overflow-hidden">
-        <GradientMesh />
-        <FloatingParticles />
+        {performance.enableHeavyAnimations && <GradientMesh />}
+        {performance.enableParticles && <FloatingParticles />}
         
         {/* Unified seamless container */}
         <div className="relative z-10">
