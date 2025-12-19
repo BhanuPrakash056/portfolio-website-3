@@ -1,66 +1,66 @@
-"use client"
+"use client";
 
-import { Header } from "@/components/header"
-import { HeroSection } from "@/components/hero-section"
-import { AboutSection } from "@/components/about-section"
-import { CertificationsSection } from "@/components/certifications-section"
-import { SkillsSection } from "@/components/skills-section"
-import { ProjectsSection } from "@/components/projects-section"
-import { ExperienceSection } from "@/components/experience-section"
-import { EducationSection } from "@/components/education-section"
-import { PublicationsSection } from "@/components/publications-section"
-import { ContactSection } from "@/components/contact-section"
-import { FloatingParticles } from "@/components/floating-particles"
-import { CustomCursor } from "@/components/custom-cursor"
-import { ScrollProgress } from "@/components/scroll-progress"
-import { LoadingScreen } from "@/components/loading-screen"
-import { GradientMesh } from "@/components/gradient-mesh"
-import { motion } from "framer-motion"
-import { useEffect } from "react"
-import Lenis from "@studio-freight/lenis"
-import { usePerformance } from "@/hooks/use-performance"
+import { Header } from "@/components/header";
+import { HeroSection } from "@/components/hero-section";
+import { AboutSection } from "@/components/about-section";
+import { CertificationsSection } from "@/components/certifications-section";
+import { SkillsSection } from "@/components/skills-section";
+import { ProjectsSection } from "@/components/projects-section";
+import { ExperienceSection } from "@/components/experience-section";
+import { EducationSection } from "@/components/education-section";
+import { PublicationsSection } from "@/components/publications-section";
+import { ContactSection } from "@/components/contact-section";
+import { FloatingParticles } from "@/components/floating-particles";
+import { CustomCursor } from "@/components/custom-cursor";
+import { ScrollProgress } from "@/components/scroll-progress";
+import { LoadingScreen } from "@/components/loading-screen";
+import { GradientMesh } from "@/components/gradient-mesh";
+import { motion } from "framer-motion";
+import { useEffect } from "react";
+import Lenis from "@studio-freight/lenis";
+import { usePerformance } from "@/hooks/use-performance";
 
 export default function Portfolio() {
-  const performance = usePerformance()
-  
+  const performance = usePerformance();
+
   const scrollToSection = (id: string) => {
-    const element = document.getElementById(id)
-    element?.scrollIntoView({ behavior: "smooth" })
-  }
+    const element = document.getElementById(id);
+    element?.scrollIntoView({ behavior: "smooth" });
+  };
 
   // Initialize Lenis smooth scroll - only if not reduced motion
   useEffect(() => {
-    if (performance.reducedMotion) return
-    
+    if (performance.reducedMotion) return;
+
     const lenis = new Lenis({
       duration: 0,
       easing: (t) => t,
       orientation: "vertical",
       smoothWheel: false,
-    })
+    });
 
     function raf(time: number) {
-      lenis.raf(time)
-      requestAnimationFrame(raf)
+      lenis.raf(time);
+      requestAnimationFrame(raf);
     }
 
-    requestAnimationFrame(raf)
+    requestAnimationFrame(raf);
 
     return () => {
-      lenis.destroy()
-    }
-  }, [performance.reducedMotion])
+      lenis.destroy();
+    };
+  }, [performance.reducedMotion]);
 
   return (
     <>
       {performance.enableHeavyAnimations && <LoadingScreen />}
       {performance.enableHeavyAnimations && <CustomCursor />}
       <ScrollProgress />
-      
+
       <div className="min-h-screen bg-background text-foreground relative overflow-hidden">
         {performance.enableHeavyAnimations && <GradientMesh />}
         {performance.enableParticles && <FloatingParticles />}
-        
+
         {/* Unified seamless container */}
         <div className="relative z-10">
           <Header />
@@ -99,7 +99,8 @@ export default function Portfolio() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
               >
-                © 2025 Anusha R Karegoudar. All rights reserved.
+                © {new Date().getFullYear()} Anusha R Karegoudar. All rights
+                reserved.
               </motion.p>
               <motion.p
                 className="mt-2 text-xs"
@@ -115,5 +116,5 @@ export default function Portfolio() {
         </div>
       </div>
     </>
-  )
+  );
 }
