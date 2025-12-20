@@ -12,7 +12,7 @@ const _geistMono = Geist_Mono({ subsets: ["latin"] })
 const siteMetadata = {
   title: "Anusha R Karegoudar - Software Engineer & AI Specialist",
   description: "Portfolio of Anusha R Karegoudar - Software Engineer specializing in AI, Machine Learning, and Full-Stack Development. Experienced in building innovative solutions with Python, Java, and modern web technologies.",
-  url: "https://yoursite.com", // Replace with your actual domain
+  url: "https://anushark.co.in", // Replace with your actual domain
   image: "/og-image.jpg", // Add your OG image to public folder
   author: "Anusha R Karegoudar",
 }
@@ -47,8 +47,11 @@ export default function RootLayout({
         <meta property="twitter:image" content={`${siteMetadata.url}${siteMetadata.image}`} />
         
         {/* Favicon */}
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="alternate icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="mask-icon" href="/mask-icon.svg" color="#6d28d9" />
+        <link rel="manifest" href="/site.webmanifest" />
         
         {/* Theme Color */}
         <meta name="theme-color" content="#000000" />
