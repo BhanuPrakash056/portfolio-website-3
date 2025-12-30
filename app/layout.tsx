@@ -10,8 +10,8 @@ const _geistMono = Geist_Mono({ subsets: ["latin"] })
 
 // Metadata for SEO
 const siteMetadata = {
-  title: "Anusha R Karegoudar - Software Engineer & AI Specialist",
-  description: "Portfolio of Anusha R Karegoudar - Software Engineer specializing in AI, Machine Learning, and Full-Stack Development. Experienced in building innovative solutions with Python, Java, and modern web technologies.",
+  title: "Anusha R Karegoudar - Cloud Engineer & AI Specialist",
+  description: "Portfolio of Anusha R Karegoudar - Cloud Engineer specializing in AI, Machine Learning, and Full-Stack Development. Experienced in building innovative solutions with Python, Java, and modern web technologies.",
   url: "https://anushark.co.in", // Replace with your actual domain
   image: "/og-image.jpg", // Add your OG image to public folder
   author: "Anusha R Karegoudar",
@@ -30,7 +30,7 @@ export default function RootLayout({
         <title>{siteMetadata.title}</title>
         <meta name="description" content={siteMetadata.description} />
         <meta name="author" content={siteMetadata.author} />
-        <meta name="keywords" content="Software Engineer, AI Specialist, Machine Learning, Full Stack Developer, React, Python, Java, Portfolio" />
+        <meta name="keywords" content="Cloud Engineer, AI Specialist, Machine Learning, Full Stack Developer, React, Python, Java, Portfolio" />
         
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
@@ -63,7 +63,7 @@ export default function RootLayout({
         <noscript>
           <div style={{ padding: '2rem', textAlign: 'center', background: '#1a1a1a', color: '#fff', minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
             <h1 style={{ fontSize: '2rem', marginBottom: '1rem' }}>Anusha R Karegoudar</h1>
-            <h2 style={{ fontSize: '1.5rem', marginBottom: '2rem', color: '#888' }}>Software Engineer & AI Specialist</h2>
+            <h2 style={{ fontSize: '1.5rem', marginBottom: '2rem', color: '#888' }}>Cloud Engineer & AI Specialist</h2>
             <p style={{ maxWidth: '600px', lineHeight: '1.6', marginBottom: '1rem' }}>
               {siteMetadata.description}
             </p>
