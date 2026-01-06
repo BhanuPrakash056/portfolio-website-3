@@ -115,7 +115,7 @@ export function ProjectsSection() {
         </AnimatedSection>
 
         <motion.div
-          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
+          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -125,10 +125,10 @@ export function ProjectsSection() {
             <motion.div
               key={project.title}
               variants={cardVariants}
-              className="group h-full"
+              className="group flex"
             >
-              <TiltCard className="h-full">
-                <Card className="h-full bg-card/80 backdrop-blur border-primary/20 hover:border-primary/40 hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300 overflow-hidden relative">
+              <TiltCard className="w-full">
+                <Card className="h-full bg-card/80 backdrop-blur border-primary/20 hover:border-primary/40 hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300 overflow-hidden relative flex flex-col">
                 {/* Gradient overlay */}
                 <motion.div
                   className={`absolute inset-0 bg-linear-to-br ${project.gradient} opacity-5 group-hover:opacity-15`}
@@ -152,7 +152,7 @@ export function ProjectsSection() {
                   }}
                 />
 
-                <CardContent className="p-6 relative z-10 h-full flex flex-col">
+                <CardContent className="p-6 relative z-10 flex-1 flex flex-col">
                   {/* Project number badge */}
                   <motion.div
                     className={`absolute top-4 right-4 w-8 h-8 rounded-full bg-linear-to-br ${project.gradient} flex items-center justify-center text-white text-xs font-bold`}
@@ -164,11 +164,11 @@ export function ProjectsSection() {
                     {project.title}
                   </h3>
                   
-                  <p className="text-muted-foreground mb-4 text-sm leading-relaxed text-pretty grow">
+                  <p className="text-muted-foreground mb-4 text-sm leading-relaxed text-pretty flex-1">
                     {project.description}
                   </p>
                   
-                  <div className="flex flex-wrap gap-2 mb-4">
+                  <div className="flex flex-wrap gap-2 mb-4 mt-auto">
                     {project.tags.map((tag, tagIndex) => (
                       <motion.div
                         key={tag}
@@ -186,7 +186,7 @@ export function ProjectsSection() {
 
                   {/* View details link */}
                   <motion.div
-                    className="flex items-center gap-2 text-sm text-primary opacity-0 group-hover:opacity-100 transition-opacity"
+                    className="flex items-center gap-2 text-sm text-primary opacity-0 group-hover:opacity-100 transition-opacity mt-2"
                     whileHover={{ x: 5 }}
                   >
                     <span>View details</span>
