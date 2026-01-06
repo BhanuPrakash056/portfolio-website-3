@@ -63,7 +63,7 @@ export function ProjectsSection() {
   const y2 = useTransform(scrollYProgress, [0, 1], [0, 60])
   
   return (
-    <section ref={ref} id="projects" className="py-24 px-4 relative overflow-hidden">
+    <section ref={ref} id="projects" className="py-24 px-4 md:px-6 lg:px-8 relative overflow-hidden">
       {/* Animated background */}
       <motion.div
         className="absolute top-1/2 right-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl"
@@ -93,7 +93,7 @@ export function ProjectsSection() {
         }}
       />
 
-      <div className="container mx-auto max-w-6xl relative z-10">
+      <div className="container mx-auto max-w-7xl relative z-10 px-0">
         <AnimatedSection>
           <motion.div
             className="text-center mb-12"
