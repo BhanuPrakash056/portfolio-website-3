@@ -231,7 +231,6 @@ export function LoadingScreen() {
           )}
         </>
       )}
-      )}
     </AnimatePresence>
   )
 }
