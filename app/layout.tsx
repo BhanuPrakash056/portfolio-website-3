@@ -1,4 +1,4 @@
-import type { Metadata } from "next"
+import type { Metadata, Viewport } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
@@ -17,26 +17,24 @@ const geistMono = Geist_Mono({
 
 // Metadata for SEO
 export const metadata: Metadata = {
-  title: "Anusha R Karegoudar - Cloud Engineer & AI Specialist",
+  title: "Anusha R Karegoudar - Cloud Engineer",
   description:
     "Portfolio of Anusha R Karegoudar - Cloud Engineer specializing in AI, Machine Learning, and Full-Stack Development. Experienced in building innovative solutions with Python, Java, and modern web technologies.",
   authors: [{ name: "Anusha R Karegoudar" }],
   keywords: [
     "Cloud Engineer",
-    "AI Specialist",
-    "Machine Learning",
-    "Full Stack Developer",
-    "React",
     "Python",
-    "Java",
-    "Portfolio",
+    "Rubicks",
+    "Azure",
+    "linux",
+    ""
   ],
   metadataBase: new URL("https://anushark.co.in"),
   openGraph: {
     type: "website",
     locale: "en_US",
     url: "https://anushark.co.in",
-    title: "Anusha R Karegoudar - Cloud Engineer & AI Specialist",
+    title: "Anusha R Karegoudar - Cloud Engineer",
     description:
       "Portfolio of Anusha R Karegoudar - Cloud Engineer specializing in AI, Machine Learning, and Full-Stack Development.",
     siteName: "Anusha R Karegoudar Portfolio",
@@ -51,7 +49,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Anusha R Karegoudar - Cloud Engineer & AI Specialist",
+    title: "Anusha R Karegoudar - Cloud Engineer",
     description:
       "Portfolio of Anusha R Karegoudar - Cloud Engineer specializing in AI, Machine Learning, and Full-Stack Development.",
     images: ["/og-image.jpg"],
@@ -71,6 +69,9 @@ export const metadata: Metadata = {
     ],
   },
   manifest: "/site.webmanifest",
+}
+
+export const viewport: Viewport = {
   themeColor: "#000000",
 }
 
@@ -98,7 +99,7 @@ export default function RootLayout({
           >
             <h1 style={{ fontSize: "2rem", marginBottom: "1rem" }}>Anusha R Karegoudar</h1>
             <h2 style={{ fontSize: "1.5rem", marginBottom: "2rem", color: "#888" }}>
-              Cloud Engineer & AI Specialist
+              Cloud Engineer
             </h2>
             <p style={{ maxWidth: "600px", lineHeight: "1.6", marginBottom: "1rem" }}>
               Portfolio of Anusha R Karegoudar - Cloud Engineer specializing in AI, Machine Learning, and
