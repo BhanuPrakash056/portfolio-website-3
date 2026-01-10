@@ -51,7 +51,7 @@ const itemVariantsReduced = {
   },
 }
 
-const floatingVariants = {
+const _floatingVariants = {
   animate: {
     y: [0, -20, 0],
     transition: {
@@ -219,7 +219,7 @@ export function HeroSection({ scrollToSection }: { scrollToSection: (id: string)
             { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
             { icon: Github, href: "https://github.com", label: "GitHub" },
             { icon: Mail, href: "mailto:anushark7@gmail.com", label: "Email" },
-          ].map((social, index) => (
+          ].map((social) => (
             <motion.div
               key={social.label}
               whileHover={performance.enableHeavyAnimations ? { scale: 1.2 } : undefined}

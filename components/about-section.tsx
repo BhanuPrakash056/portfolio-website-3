@@ -2,7 +2,7 @@
 
 import { motion, useScroll, useTransform } from "framer-motion"
 import { Card, CardContent } from "@/components/ui/card"
-import { Rocket, Users, Target, CheckCircle2, Code2, Sparkles, User } from "lucide-react"
+import { Rocket, Users, CheckCircle2, Code2, Sparkles, User } from "lucide-react"
 import { AnimatedSection } from "./animated-section"
 import { TiltCard } from "./tilt-card"
 import { About3D } from "./about-3d"
@@ -49,7 +49,7 @@ const coreValues = [
   },
 ]
 
-const containerVariants = {
+const _containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -59,7 +59,7 @@ const containerVariants = {
   },
 }
 
-const cardVariants = {
+const _cardVariants = {
   hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,

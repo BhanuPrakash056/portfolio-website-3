@@ -1,7 +1,6 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { ReactNode } from "react"
 
 interface TextRevealProps {
   children: string
@@ -14,7 +13,7 @@ export function TextReveal({ children, className = "", delay = 0 }: TextRevealPr
 
   const container = {
     hidden: { opacity: 0 },
-    visible: (i = 1) => ({
+    visible: (_i = 1) => ({
       opacity: 1,
       transition: { staggerChildren: 0.05, delayChildren: delay },
     }),

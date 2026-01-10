@@ -13,7 +13,7 @@ export function SplitText({ text, className = "", delay = 0 }: SplitTextProps) {
 
   const container = {
     hidden: { opacity: 0 },
-    visible: (i = 1) => ({
+    visible: (_i = 1) => ({
       opacity: 1,
       transition: { staggerChildren: 0.03, delayChildren: delay },
     }),

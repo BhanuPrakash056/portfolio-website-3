@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
-import { Home, ArrowLeft, Search, Sparkles, CloudOff, Server, Zap } from "lucide-react"
+import { Home, ArrowLeft, Sparkles, CloudOff, Server, Zap } from "lucide-react"
 import Link from "next/link"
 import { MagneticButton } from "@/components/magnetic-button"
 import { useState, useEffect } from "react"
@@ -70,14 +70,8 @@ const statusMessages = [
 export default function NotFound() {
   const [currentQuote, setCurrentQuote] = useState(0)
   const [statusMessage, setStatusMessage] = useState(0)
-  const [isRevealed, setIsRevealed] = useState(false)
   
   useEffect(() => {
-    // Check if current time is past December 15, 2025 23:55
-    const revealDate = new Date('2025-12-15T23:55:00')
-    const now = new Date()
-    setIsRevealed(now >= revealDate)
-    
     const quoteInterval = setInterval(() => {
       setCurrentQuote((prev) => (prev + 1) % funnyQuotes.length)
     }, 5000)

@@ -147,7 +147,7 @@ export function CertificationsSection() {
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
         >
-          {certifications.map((cert, index) => (
+          {certifications.map((cert) => (
             <motion.div
               key={`${cert.provider}-${cert.title}`}
               variants={cardVariants}
