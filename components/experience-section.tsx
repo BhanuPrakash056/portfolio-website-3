@@ -28,10 +28,10 @@ const experiences = [
 
 export function ExperienceSection() {
   return (
-    <section id="experience" className="py-24 px-4 bg-muted/30 relative overflow-hidden">
+    <section id="experience" className="bg-muted/30 relative overflow-hidden px-4 py-24">
       {/* Background effects */}
       <motion.div
-        className="absolute top-1/3 left-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl"
+        className="bg-primary/10 absolute top-1/3 left-0 h-96 w-96 rounded-full blur-3xl"
         animate={{
           scale: [1, 1.4, 1],
           x: [0, 50, 0],
@@ -43,7 +43,7 @@ export function ExperienceSection() {
         }}
       />
       <motion.div
-        className="absolute bottom-1/4 right-0 w-80 h-80 bg-accent/10 rounded-full blur-3xl"
+        className="bg-accent/10 absolute right-0 bottom-1/4 h-80 w-80 rounded-full blur-3xl"
         animate={{
           opacity: [0.3, 0.6, 0.3],
           scale: [1, 1.2, 1],
@@ -56,7 +56,7 @@ export function ExperienceSection() {
       />
       {/* Animated background gradient */}
       <motion.div
-        className="absolute top-0 left-1/4 w-96 h-96 bg-linear-to-br from-primary/10 to-accent/10 rounded-full blur-3xl"
+        className="from-primary/10 to-accent/10 absolute top-0 left-1/4 h-96 w-96 rounded-full bg-linear-to-br blur-3xl"
         animate={{
           x: [0, -100, 0],
           y: [0, 100, 0],
@@ -68,39 +68,39 @@ export function ExperienceSection() {
         }}
       />
 
-      <div className="container mx-auto max-w-6xl relative z-10">
+      <div className="relative z-10 container mx-auto max-w-6xl">
         <AnimatedSection>
           <motion.div
-            className="text-center mb-12"
+            className="mb-12 text-center"
             initial={{ opacity: 0, y: -20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <div className="inline-flex items-center gap-2 mb-4">
-              <Briefcase className="w-6 h-6 text-primary" />
-              <h2 className="text-3xl md:text-4xl font-bold bg-linear-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent">
+            <div className="mb-4 inline-flex items-center gap-2">
+              <Briefcase className="text-primary h-6 w-6" />
+              <h2 className="from-foreground via-primary to-foreground bg-linear-to-r bg-clip-text text-3xl font-bold text-transparent md:text-4xl">
                 Professional Experience
               </h2>
             </div>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-muted-foreground mx-auto max-w-2xl">
               Building cloud infrastructure and delivering innovative solutions
             </p>
           </motion.div>
         </AnimatedSection>
 
-        <div className="space-y-8 max-w-4xl mx-auto">
+        <div className="mx-auto max-w-4xl space-y-8">
           {experiences.map((exp, index) => (
             <AnimatedSection key={exp.title} delay={index * 0.2}>
               <motion.div
-                className="relative border-l-2 border-primary/20 pl-8 pb-8 group"
+                className="border-primary/20 group relative border-l-2 pb-8 pl-8"
                 whileHover={{ x: 10 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
               >
                 {/* Timeline dot */}
                 <motion.div
-                  className={`absolute left-0 top-0 w-4 h-4 -translate-x-2 rounded-full ${
+                  className={`absolute top-0 left-0 h-4 w-4 -translate-x-2 rounded-full ${
                     exp.current ? "bg-primary" : "bg-foreground/50"
-                  } border-4 border-background`}
+                  } border-background border-4`}
                   animate={
                     exp.current
                       ? {
@@ -121,12 +121,12 @@ export function ExperienceSection() {
 
                 {/* Content card */}
                 <motion.div
-                  className="bg-card/80 backdrop-blur border border-primary/20 hover:border-primary/40 rounded-lg p-6 hover:shadow-xl hover:shadow-primary/10 transition-all duration-300 relative overflow-hidden"
+                  className="bg-card/80 border-primary/20 hover:border-primary/40 hover:shadow-primary/10 relative overflow-hidden rounded-lg border p-6 backdrop-blur transition-all duration-300 hover:shadow-xl"
                   whileHover={{ boxShadow: "0 20px 40px rgba(0,0,0,0.3)" }}
                 >
                   {/* Gradient overlay */}
                   <motion.div
-                    className="absolute inset-0 bg-linear-to-r from-primary/5 via-primary/10 to-primary/5"
+                    className="from-primary/5 via-primary/10 to-primary/5 absolute inset-0 bg-linear-to-r"
                     initial={{ x: "-100%" }}
                     whileHover={{ x: "100%" }}
                     transition={{ duration: 0.8 }}
@@ -134,10 +134,10 @@ export function ExperienceSection() {
 
                   <div className="relative z-10">
                     {/* Header */}
-                    <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-2 mb-4">
+                    <div className="mb-4 flex flex-col gap-2 md:flex-row md:items-start md:justify-between">
                       <div>
                         <motion.h3
-                          className="text-2xl font-bold mb-1 group-hover:text-primary transition-colors"
+                          className="group-hover:text-primary mb-1 text-2xl font-bold transition-colors"
                           initial={{ opacity: 0, x: -20 }}
                           whileInView={{ opacity: 1, x: 0 }}
                           viewport={{ once: true }}
@@ -146,24 +146,24 @@ export function ExperienceSection() {
                           {exp.title}
                         </motion.h3>
                         <motion.p
-                          className="text-lg text-foreground/80 flex items-center gap-2"
+                          className="text-foreground/80 flex items-center gap-2 text-lg"
                           initial={{ opacity: 0, x: -20 }}
                           whileInView={{ opacity: 1, x: 0 }}
                           viewport={{ once: true }}
                           transition={{ delay: 0.3 }}
                         >
-                          <Briefcase className="w-4 h-4" />
+                          <Briefcase className="h-4 w-4" />
                           {exp.company}
                         </motion.p>
                       </div>
                       <motion.div
-                        className="flex items-center gap-2 text-muted-foreground"
+                        className="text-muted-foreground flex items-center gap-2"
                         initial={{ opacity: 0, x: 20 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.3 }}
                       >
-                        <Calendar className="w-4 h-4" />
+                        <Calendar className="h-4 w-4" />
                         <span>{exp.period}</span>
                       </motion.div>
                     </div>
@@ -171,7 +171,7 @@ export function ExperienceSection() {
                     {/* Current badge */}
                     {exp.current && (
                       <motion.div
-                        className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4"
+                        className="bg-primary/10 text-primary mb-4 inline-flex items-center gap-2 rounded-full px-3 py-1 text-sm font-medium"
                         animate={{
                           scale: [1, 1.05, 1],
                         }}
@@ -181,7 +181,7 @@ export function ExperienceSection() {
                         }}
                       >
                         <motion.div
-                          className="w-2 h-2 rounded-full bg-primary"
+                          className="bg-primary h-2 w-2 rounded-full"
                           animate={{
                             opacity: [1, 0.3, 1],
                           }}
@@ -196,7 +196,7 @@ export function ExperienceSection() {
 
                     {/* Description */}
                     <motion.p
-                      className="text-muted-foreground leading-relaxed mb-4"
+                      className="text-muted-foreground mb-4 leading-relaxed"
                       initial={{ opacity: 0 }}
                       whileInView={{ opacity: 1 }}
                       viewport={{ once: true }}

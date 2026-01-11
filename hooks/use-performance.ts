@@ -33,15 +33,15 @@ export function usePerformance(): PerformanceConfig {
 
     // Detect device tier based on hardware
     let deviceTier: "high" | "mid" | "low" = "high"
-    
+
     // Check device memory (if available)
     const deviceMemory = (navigator as { deviceMemory?: number }).deviceMemory
     const hardwareConcurrency = navigator.hardwareConcurrency || 4
-    
+
     // Check connection type
     const connection = (navigator as { connection?: { effectiveType?: string } }).connection
     const effectiveType = connection?.effectiveType || "4g"
-    
+
     // Determine device tier
     if (deviceMemory && deviceMemory < 4) {
       deviceTier = "low"

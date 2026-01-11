@@ -11,17 +11,17 @@ export function GradientMesh() {
       setIsMobile(window.innerWidth < 768)
     }
     checkMobile()
-    window.addEventListener('resize', checkMobile)
-    return () => window.removeEventListener('resize', checkMobile)
+    window.addEventListener("resize", checkMobile)
+    return () => window.removeEventListener("resize", checkMobile)
   }, [])
 
   // Reduce animations on mobile for better performance
   const animationDuration = isMobile ? 30 : 20
   return (
-    <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
+    <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
       {/* Animated gradient blobs */}
       <motion.div
-        className="absolute top-0 left-0 w-[600px] h-[600px] bg-primary/20 rounded-full blur-[120px]"
+        className="bg-primary/20 absolute top-0 left-0 h-[600px] w-[600px] rounded-full blur-[120px]"
         animate={{
           x: [0, 100, 0],
           y: [0, 50, 0],
@@ -33,9 +33,9 @@ export function GradientMesh() {
           ease: "easeInOut",
         }}
       />
-      
+
       <motion.div
-        className="absolute top-1/2 right-0 w-[500px] h-[500px] bg-accent/20 rounded-full blur-[120px]"
+        className="bg-accent/20 absolute top-1/2 right-0 h-[500px] w-[500px] rounded-full blur-[120px]"
         animate={{
           x: [0, -100, 0],
           y: [0, -50, 0],
@@ -47,9 +47,9 @@ export function GradientMesh() {
           ease: "easeInOut",
         }}
       />
-      
+
       <motion.div
-        className="absolute bottom-0 left-1/2 w-[550px] h-[550px] bg-purple-500/10 rounded-full blur-[120px]"
+        className="absolute bottom-0 left-1/2 h-[550px] w-[550px] rounded-full bg-purple-500/10 blur-[120px]"
         animate={{
           x: [0, 50, 0],
           y: [0, -100, 0],

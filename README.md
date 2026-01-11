@@ -37,17 +37,20 @@ A modern, interactive portfolio website showcasing the work and expertise of Anu
 ## 📦 Installation
 
 1. **Clone the repository**
+
    ```bash
    git clone https://github.com/BhanuPrakash056/portfolio-website-3.git
    cd portfolio-website-3
    ```
 
 2. **Install dependencies**
+
    ```bash
    pnpm install
    ```
 
 3. **Run the development server**
+
    ```bash
    pnpm dev
    ```
@@ -88,6 +91,7 @@ portfolio-website-3/
 ### Update Personal Information
 
 Edit the metadata in [app/layout.tsx](app/layout.tsx):
+
 ```typescript
 const siteMetadata = {
   title: "Your Name - Your Title",
@@ -100,6 +104,7 @@ const siteMetadata = {
 ### Modify Content
 
 Update the content in respective component files:
+
 - Hero: [components/hero-section.tsx](components/hero-section.tsx)
 - About: [components/about-section.tsx](components/about-section.tsx)
 - Skills: [components/skills-section.tsx](components/skills-section.tsx)
@@ -140,6 +145,7 @@ NEXT_PUBLIC_SITE_URL=https://yourdomain.com
 ## 📈 Performance
 
 This portfolio is optimized for performance with:
+
 - Image optimization via Next.js Image component
 - Code splitting and lazy loading
 - Reduced motion support for accessibility
@@ -159,6 +165,7 @@ This project is open source and available under the [MIT License](LICENSE).
 ## 👤 Author
 
 **Anusha R Karegoudar**
+
 - Website: [https://anushark.co.in](https://anushark.co.in)
 - GitHub: [@BhanuPrakash056](https://github.com/BhanuPrakash056)
 

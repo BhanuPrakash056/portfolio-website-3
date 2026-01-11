@@ -21,14 +21,7 @@ export const metadata: Metadata = {
   description:
     "Portfolio of Anusha R Karegoudar - Cloud Engineer specializing in AI, Machine Learning, and Full-Stack Development. Experienced in building innovative solutions with Python, Java, and modern web technologies.",
   authors: [{ name: "Anusha R Karegoudar" }],
-  keywords: [
-    "Cloud Engineer",
-    "Python",
-    "Rubicks",
-    "Azure",
-    "linux",
-    ""
-  ],
+  keywords: ["Cloud Engineer", "Python", "Rubicks", "Azure", "linux", ""],
   metadataBase: new URL("https://anushark.co.in"),
   openGraph: {
     type: "website",
@@ -55,10 +48,7 @@ export const metadata: Metadata = {
     images: ["/og-image.jpg"],
   },
   icons: {
-    icon: [
-      { url: "/favicon.svg", type: "image/svg+xml" },
-      { url: "/favicon.ico" },
-    ],
+    icon: [{ url: "/favicon.svg", type: "image/svg+xml" }, { url: "/favicon.ico" }],
     apple: [{ url: "/apple-touch-icon.png" }],
     other: [
       {
@@ -81,7 +71,11 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`dark ${geist.variable} ${geistMono.variable}`} suppressHydrationWarning>
+    <html
+      lang="en"
+      className={`dark ${geist.variable} ${geistMono.variable}`}
+      suppressHydrationWarning
+    >
       <body className={`${geist.className} antialiased`}>
         <noscript>
           <div
@@ -102,13 +96,13 @@ export default function RootLayout({
               Cloud Engineer
             </h2>
             <p style={{ maxWidth: "600px", lineHeight: "1.6", marginBottom: "1rem" }}>
-              Portfolio of Anusha R Karegoudar - Cloud Engineer specializing in AI, Machine Learning, and
-              Full-Stack Development. Experienced in building innovative solutions with Python, Java, and modern web
-              technologies.
+              Portfolio of Anusha R Karegoudar - Cloud Engineer specializing in AI, Machine
+              Learning, and Full-Stack Development. Experienced in building innovative solutions
+              with Python, Java, and modern web technologies.
             </p>
             <p style={{ color: "#888" }}>
-              This portfolio uses JavaScript for interactive animations. Please enable JavaScript for the full
-              experience.
+              This portfolio uses JavaScript for interactive animations. Please enable JavaScript
+              for the full experience.
             </p>
           </div>
         </noscript>

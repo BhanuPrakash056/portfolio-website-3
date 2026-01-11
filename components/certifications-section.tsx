@@ -79,10 +79,10 @@ const cardVariants = {
 
 export function CertificationsSection() {
   return (
-    <section id="certifications" className="py-24 px-4 bg-muted/30 relative overflow-hidden">
+    <section id="certifications" className="bg-muted/30 relative overflow-hidden px-4 py-24">
       {/* Background effects */}
       <motion.div
-        className="absolute top-1/4 right-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl"
+        className="bg-primary/10 absolute top-1/4 right-1/4 h-96 w-96 rounded-full blur-3xl"
         animate={{
           scale: [1, 1.3, 1],
           opacity: [0.3, 0.5, 0.3],
@@ -94,7 +94,7 @@ export function CertificationsSection() {
         }}
       />
       <motion.div
-        className="absolute bottom-1/3 left-1/4 w-80 h-80 bg-accent/10 rounded-full blur-3xl"
+        className="bg-accent/10 absolute bottom-1/3 left-1/4 h-80 w-80 rounded-full blur-3xl"
         animate={{
           scale: [1, 1.2, 1],
           x: [0, 50, 0],
@@ -106,21 +106,21 @@ export function CertificationsSection() {
         }}
       />
 
-      <div className="container mx-auto max-w-6xl relative z-10">
+      <div className="relative z-10 container mx-auto max-w-6xl">
         <AnimatedSection>
-          <div className="text-center mb-16">
+          <div className="mb-16 text-center">
             <motion.div
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/20 mb-6 shadow-xl"
+              className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-4 py-2 shadow-xl"
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               whileHover={{ scale: 1.05 }}
             >
-              <Award className="w-5 h-5" strokeWidth={2} />
+              <Award className="h-5 w-5" strokeWidth={2} />
               <span className="text-sm font-medium">Certifications & Achievements</span>
             </motion.div>
             <motion.h2
-              className="text-4xl md:text-5xl font-bold mb-4"
+              className="mb-4 text-4xl font-bold md:text-5xl"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -128,20 +128,21 @@ export function CertificationsSection() {
               Professional Certifications
             </motion.h2>
             <motion.p
-              className="text-muted-foreground max-w-2xl mx-auto"
+              className="text-muted-foreground mx-auto max-w-2xl"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
             >
-              Industry-recognized certifications demonstrating expertise across cloud platforms, security, and emerging technologies
+              Industry-recognized certifications demonstrating expertise across cloud platforms,
+              security, and emerging technologies
             </motion.p>
           </div>
         </AnimatedSection>
 
         {/* Certifications Grid */}
         <motion.div
-          className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6"
+          className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -154,17 +155,17 @@ export function CertificationsSection() {
               whileHover={{ y: -8, scale: 1.02 }}
               className="group"
             >
-              <Card className="h-full bg-card/80 backdrop-blur border-primary/20 hover:border-primary/40 hover:shadow-2xl transition-all duration-300 relative overflow-hidden">
+              <Card className="bg-card/80 border-primary/20 hover:border-primary/40 relative h-full overflow-hidden backdrop-blur transition-all duration-300 hover:shadow-2xl">
                 {/* Gradient overlay */}
                 <motion.div
-                  className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100"
+                  className="bg-primary/5 absolute inset-0 opacity-0 group-hover:opacity-100"
                   transition={{ duration: 0.3 }}
                 />
 
-                <CardContent className="p-6 relative">
+                <CardContent className="relative p-6">
                   {/* Icon */}
                   <motion.div
-                    className="text-5xl mb-4"
+                    className="mb-4 text-5xl"
                     whileHover={{ scale: 1.1 }}
                     transition={{ duration: 0.2 }}
                   >
@@ -172,21 +173,21 @@ export function CertificationsSection() {
                   </motion.div>
 
                   {/* Provider Badge */}
-                  <div className="inline-block px-3 py-1 rounded-full bg-white/10 border border-white/20 text-xs font-medium mb-3">
+                  <div className="mb-3 inline-block rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-medium">
                     {cert.provider}
                   </div>
 
                   {/* Title */}
-                  <h3 className="font-semibold text-lg mb-2 line-clamp-2 group-hover:text-white transition-colors">
+                  <h3 className="mb-2 line-clamp-2 text-lg font-semibold transition-colors group-hover:text-white">
                     {cert.title}
                   </h3>
 
                   {/* Code */}
-                  <p className="text-sm text-muted-foreground">{cert.code}</p>
+                  <p className="text-muted-foreground text-sm">{cert.code}</p>
 
                   {/* Hover indicator */}
                   <motion.div
-                    className="absolute bottom-0 left-0 right-0 h-1 bg-white"
+                    className="absolute right-0 bottom-0 left-0 h-1 bg-white"
                     initial={{ scaleX: 0 }}
                     whileHover={{ scaleX: 1 }}
                     transition={{ duration: 0.3 }}

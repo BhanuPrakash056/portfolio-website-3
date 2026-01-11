@@ -11,7 +11,7 @@ export function useReducedMotion(): boolean {
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)")
-    
+
     // Set initial value
     setPrefersReducedMotion(mediaQuery.matches)
 

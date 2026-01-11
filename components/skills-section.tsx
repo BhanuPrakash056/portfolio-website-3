@@ -64,15 +64,15 @@ export function SkillsSection() {
     target: ref,
     offset: ["start end", "end start"],
   })
-  
+
   const y1 = useTransform(scrollYProgress, [0, 1], [0, -100])
   const y2 = useTransform(scrollYProgress, [0, 1], [0, 100])
-  
+
   return (
-    <section ref={ref} id="skills" className="py-24 px-4 bg-muted/30 relative overflow-hidden">
+    <section ref={ref} id="skills" className="bg-muted/30 relative overflow-hidden px-4 py-24">
       {/* Background decoration */}
       <motion.div
-        className="absolute bottom-0 left-0 w-96 h-96 bg-accent/10 rounded-full blur-3xl"
+        className="bg-accent/10 absolute bottom-0 left-0 h-96 w-96 rounded-full blur-3xl"
         style={{ y: y1 }}
         animate={{
           scale: [1, 1.3, 1],
@@ -85,7 +85,7 @@ export function SkillsSection() {
         }}
       />
       <motion.div
-        className="absolute top-1/4 right-0 w-80 h-80 bg-primary/10 rounded-full blur-3xl"
+        className="bg-primary/10 absolute top-1/4 right-0 h-80 w-80 rounded-full blur-3xl"
         style={{ y: y2 }}
         animate={{
           scale: [1, 1.2, 1],
@@ -98,26 +98,27 @@ export function SkillsSection() {
         }}
       />
 
-      <div className="container mx-auto max-w-6xl relative z-10">
+      <div className="relative z-10 container mx-auto max-w-6xl">
         <AnimatedSection>
           <motion.div
-            className="text-center mb-12"
+            className="mb-12 text-center"
             initial={{ opacity: 0, y: -20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-linear-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent">
+            <h2 className="from-foreground via-primary to-foreground mb-4 bg-linear-to-r bg-clip-text text-3xl font-bold text-transparent md:text-4xl">
               Technical Skills
             </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              A diverse skill set spanning cloud infrastructure, programming, and cutting-edge technologies
+            <p className="text-muted-foreground mx-auto max-w-2xl">
+              A diverse skill set spanning cloud infrastructure, programming, and cutting-edge
+              technologies
             </p>
           </motion.div>
         </AnimatedSection>
 
         <motion.div
-          className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8"
+          className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -130,15 +131,25 @@ export function SkillsSection() {
               whileHover={{ y: -10, scale: 1.02 }}
               className="group"
             >
-              <div className="h-full p-6 rounded-xl bg-card/80 backdrop-blur border border-primary/20 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/10 transition-all duration-300 relative overflow-hidden">
+              <div className="bg-card/80 border-primary/20 hover:border-primary/40 hover:shadow-primary/10 relative h-full overflow-hidden rounded-xl border p-6 backdrop-blur transition-all duration-300 hover:shadow-xl">
                 {/* 3D Background */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                  <Card3D color={categoryIndex === 0 ? "#60a5fa" : categoryIndex === 1 ? "#34d399" : categoryIndex === 2 ? "#a78bfa" : "#f59e0b"} />
+                <div className="absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
+                  <Card3D
+                    color={
+                      categoryIndex === 0
+                        ? "#60a5fa"
+                        : categoryIndex === 1
+                          ? "#34d399"
+                          : categoryIndex === 2
+                            ? "#a78bfa"
+                            : "#f59e0b"
+                    }
+                  />
                 </div>
-                
+
                 {/* Gradient overlay */}
                 <motion.div
-                  className={`absolute inset-0 bg-linear-to-br ${category.color} opacity-5 group-hover:opacity-15 transition-opacity duration-300`}
+                  className={`absolute inset-0 bg-linear-to-br ${category.color} opacity-5 transition-opacity duration-300 group-hover:opacity-15`}
                 />
 
                 {/* Icon */}
@@ -154,19 +165,19 @@ export function SkillsSection() {
                   }}
                 >
                   <motion.div
-                    className={`inline-flex p-4 rounded-xl bg-primary/10 border-2 border-primary/20 shadow-2xl`}
+                    className={`bg-primary/10 border-primary/20 inline-flex rounded-xl border-2 p-4 shadow-2xl`}
                     whileHover={{ scale: 1.15 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <category.icon className="w-10 h-10 text-primary" strokeWidth={1.5} />
+                    <category.icon className="text-primary h-10 w-10" strokeWidth={1.5} />
                   </motion.div>
                 </motion.div>
 
                 {/* Title */}
-                <h3 className="text-xl font-semibold mb-4 relative">{category.title}</h3>
+                <h3 className="relative mb-4 text-xl font-semibold">{category.title}</h3>
 
                 {/* Skills */}
-                <div className="flex flex-wrap gap-2 relative">
+                <div className="relative flex flex-wrap gap-2">
                   {category.skills.map((skill, skillIndex) => (
                     <motion.div
                       key={skill}
@@ -191,7 +202,7 @@ export function SkillsSection() {
 
                 {/* Animated corner accent */}
                 <motion.div
-                  className={`absolute -top-10 -right-10 w-20 h-20 rounded-full bg-linear-to-br ${category.color} opacity-10 group-hover:opacity-30 blur-xl`}
+                  className={`absolute -top-10 -right-10 h-20 w-20 rounded-full bg-linear-to-br ${category.color} opacity-10 blur-xl group-hover:opacity-30`}
                   animate={{
                     scale: [1, 1.2, 1],
                   }}

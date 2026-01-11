@@ -24,9 +24,9 @@ const education = [
 
 export function EducationSection() {
   return (
-    <section id="education" className="py-24 px-4 relative overflow-hidden">
+    <section id="education" className="relative overflow-hidden px-4 py-24">
       <motion.div
-        className="absolute top-1/3 left-1/4 w-96 h-96 bg-accent/5 rounded-full blur-3xl"
+        className="bg-accent/5 absolute top-1/3 left-1/4 h-96 w-96 rounded-full blur-3xl"
         animate={{
           scale: [1, 1.2, 1],
           x: [0, 50, 0],
@@ -38,39 +38,42 @@ export function EducationSection() {
         }}
       />
 
-      <div className="container mx-auto max-w-6xl relative z-10">
+      <div className="relative z-10 container mx-auto max-w-6xl">
         <AnimatedSection>
           <motion.div
-            className="text-center mb-12"
+            className="mb-12 text-center"
             initial={{ opacity: 0, y: -20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <div className="inline-flex items-center gap-2 mb-4">
-              <GraduationCap className="w-6 h-6 text-primary" />
-              <h2 className="text-3xl md:text-4xl font-bold bg-linear-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent">
+            <div className="mb-4 inline-flex items-center gap-2">
+              <GraduationCap className="text-primary h-6 w-6" />
+              <h2 className="from-foreground via-primary to-foreground bg-linear-to-r bg-clip-text text-3xl font-bold text-transparent md:text-4xl">
                 Education
               </h2>
             </div>
           </motion.div>
         </AnimatedSection>
 
-        <div className="space-y-6 max-w-4xl mx-auto">
+        <div className="mx-auto max-w-4xl space-y-6">
           {education.map((edu, index) => (
             <AnimatedSection key={edu.degree} delay={index * 0.2}>
-              <motion.div whileHover={{ scale: 1.02 }} transition={{ type: "spring", stiffness: 300 }}>
-                <Card className="bg-card/80 backdrop-blur border-primary/20 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/10 transition-all duration-300 overflow-hidden group">
+              <motion.div
+                whileHover={{ scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                <Card className="bg-card/80 border-primary/20 hover:border-primary/40 hover:shadow-primary/10 group overflow-hidden backdrop-blur transition-all duration-300 hover:shadow-xl">
                   <motion.div
-                    className="absolute inset-0 bg-linear-to-r from-primary/5 via-primary/10 to-primary/5"
+                    className="from-primary/5 via-primary/10 to-primary/5 absolute inset-0 bg-linear-to-r"
                     initial={{ x: "-100%" }}
                     whileHover={{ x: "100%" }}
                     transition={{ duration: 0.8 }}
                   />
-                  <CardContent className="p-8 relative">
-                    <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
+                  <CardContent className="relative p-8">
+                    <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
                       <div className="flex-1">
                         <motion.h3
-                          className="text-2xl font-bold mb-2 group-hover:text-primary transition-colors"
+                          className="group-hover:text-primary mb-2 text-2xl font-bold transition-colors"
                           initial={{ opacity: 0, x: -20 }}
                           whileInView={{ opacity: 1, x: 0 }}
                           viewport={{ once: true }}
@@ -78,13 +81,13 @@ export function EducationSection() {
                           {edu.degree}
                         </motion.h3>
                         <motion.p
-                          className="text-lg mb-1 flex items-center gap-2"
+                          className="mb-1 flex items-center gap-2 text-lg"
                           initial={{ opacity: 0, x: -20 }}
                           whileInView={{ opacity: 1, x: 0 }}
                           viewport={{ once: true }}
                           transition={{ delay: 0.1 }}
                         >
-                          <GraduationCap className="w-4 h-4 text-primary" />
+                          <GraduationCap className="text-primary h-4 w-4" />
                           {edu.institution}
                         </motion.p>
                         <motion.p
@@ -94,7 +97,7 @@ export function EducationSection() {
                           viewport={{ once: true }}
                           transition={{ delay: 0.2 }}
                         >
-                          <Calendar className="w-4 h-4" />
+                          <Calendar className="h-4 w-4" />
                           {edu.period}
                         </motion.p>
                       </div>
@@ -105,13 +108,13 @@ export function EducationSection() {
                         viewport={{ once: true }}
                         transition={{ delay: 0.3, type: "spring", stiffness: 200 }}
                       >
-                        <Trophy className="w-5 h-5 text-primary" />
+                        <Trophy className="text-primary h-5 w-5" />
                         <div className="text-2xl font-bold">{edu.gpa}</div>
                       </motion.div>
                     </div>
                     {edu.highlights.length > 0 && (
                       <motion.div
-                        className="flex flex-wrap gap-2 mt-4"
+                        className="mt-4 flex flex-wrap gap-2"
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
                         viewport={{ once: true }}
@@ -120,7 +123,7 @@ export function EducationSection() {
                         {edu.highlights.map((highlight, i) => (
                           <motion.span
                             key={highlight}
-                            className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm"
+                            className="bg-primary/10 text-primary rounded-full px-3 py-1 text-sm"
                             initial={{ opacity: 0, x: -10 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}

@@ -76,18 +76,18 @@ export function AboutSection() {
     target: ref,
     offset: ["start end", "end start"],
   })
-  
+
   const y1 = useTransform(scrollYProgress, [0, 1], [0, -80])
   const y2 = useTransform(scrollYProgress, [0, 1], [0, 80])
-  
+
   return (
-    <section ref={ref} id="about" className="py-24 px-4 relative overflow-hidden">
+    <section ref={ref} id="about" className="relative overflow-hidden px-4 py-24">
       {/* 3D Elements */}
       <About3D />
-      
+
       {/* Animated background elements */}
       <motion.div
-        className="absolute top-20 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl"
+        className="bg-primary/5 absolute top-20 right-0 h-96 w-96 rounded-full blur-3xl"
         style={{ y: y1 }}
         animate={{
           scale: [1, 1.2, 1],
@@ -101,7 +101,7 @@ export function AboutSection() {
         }}
       />
       <motion.div
-        className="absolute bottom-20 left-0 w-80 h-80 bg-accent/5 rounded-full blur-3xl"
+        className="bg-accent/5 absolute bottom-20 left-0 h-80 w-80 rounded-full blur-3xl"
         style={{ y: y2 }}
         animate={{
           scale: [1, 1.3, 1],
@@ -115,21 +115,21 @@ export function AboutSection() {
         }}
       />
 
-      <div className="container mx-auto max-w-6xl relative z-10">
+      <div className="relative z-10 container mx-auto max-w-6xl">
         <AnimatedSection>
-          <div className="text-center mb-16">
+          <div className="mb-16 text-center">
             <motion.div
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/20 mb-6 shadow-xl"
+              className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-4 py-2 shadow-xl"
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               whileHover={{ scale: 1.05 }}
             >
-              <User className="w-5 h-5" strokeWidth={2} />
+              <User className="h-5 w-5" strokeWidth={2} />
               <span className="text-sm font-medium">Get to know me</span>
             </motion.div>
             <motion.h2
-              className="text-4xl md:text-5xl font-bold mb-4"
+              className="mb-4 text-4xl font-bold md:text-5xl"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -137,21 +137,22 @@ export function AboutSection() {
               About Me
             </motion.h2>
             <motion.p
-              className="text-muted-foreground max-w-2xl mx-auto"
+              className="text-muted-foreground mx-auto max-w-2xl"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
             >
-              Experienced Cloud Operations Engineer specializing in hybrid cloud infrastructure, DevOps automation, and enterprise-scale cloud solutions.
-              Dedicated to delivering reliable, secure, and high-performance cloud architectures.
+              Experienced Cloud Operations Engineer specializing in hybrid cloud infrastructure,
+              DevOps automation, and enterprise-scale cloud solutions. Dedicated to delivering
+              reliable, secure, and high-performance cloud architectures.
             </motion.p>
           </div>
         </AnimatedSection>
 
         {/* Stats Cards */}
         <AnimatedSection>
-          <div className="grid grid-cols-3 gap-4 md:gap-6 mb-16 max-w-4xl mx-auto">
+          <div className="mx-auto mb-16 grid max-w-4xl grid-cols-3 gap-4 md:gap-6">
             {highlights.map((stat, index) => (
               <motion.div
                 key={stat.label}
@@ -161,28 +162,30 @@ export function AboutSection() {
                 transition={{ delay: index * 0.1 }}
               >
                 <TiltCard className="h-full">
-                  <Card className="bg-card/80 backdrop-blur border-white/20 hover:border-white/40 hover:shadow-2xl transition-all duration-300 overflow-hidden group relative h-full">
-                  <motion.div
-                    className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100"
-                    transition={{ duration: 0.3 }}
-                  />
-                  <CardContent className="p-6 text-center relative">
+                  <Card className="bg-card/80 group relative h-full overflow-hidden border-white/20 backdrop-blur transition-all duration-300 hover:border-white/40 hover:shadow-2xl">
                     <motion.div
-                      className="inline-flex p-4 rounded-xl bg-primary/10 border-2 border-primary/20 shadow-2xl mb-3"
-                      whileHover={{ scale: 1.2 }}
-                    >
-                      <stat.icon className="w-8 h-8 text-primary" strokeWidth={2} />
-                    </motion.div>
-                    <motion.div
-                      className="text-3xl md:text-4xl font-bold mb-1"
-                      animate={{ scale: [1, 1.05, 1] }}
-                      transition={{ duration: 2, repeat: Infinity, delay: index * 0.3 }}
-                    >
-                      {stat.value}
-                    </motion.div>
-                    <div className="text-xs md:text-sm text-muted-foreground font-medium">{stat.label}</div>
-                  </CardContent>
-                </Card>
+                      className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100"
+                      transition={{ duration: 0.3 }}
+                    />
+                    <CardContent className="relative p-6 text-center">
+                      <motion.div
+                        className="bg-primary/10 border-primary/20 mb-3 inline-flex rounded-xl border-2 p-4 shadow-2xl"
+                        whileHover={{ scale: 1.2 }}
+                      >
+                        <stat.icon className="text-primary h-8 w-8" strokeWidth={2} />
+                      </motion.div>
+                      <motion.div
+                        className="mb-1 text-3xl font-bold md:text-4xl"
+                        animate={{ scale: [1, 1.05, 1] }}
+                        transition={{ duration: 2, repeat: Infinity, delay: index * 0.3 }}
+                      >
+                        {stat.value}
+                      </motion.div>
+                      <div className="text-muted-foreground text-xs font-medium md:text-sm">
+                        {stat.label}
+                      </div>
+                    </CardContent>
+                  </Card>
                 </TiltCard>
               </motion.div>
             ))}
@@ -190,7 +193,7 @@ export function AboutSection() {
         </AnimatedSection>
 
         {/* Bio and Core Values */}
-        <div className="max-w-5xl mx-auto space-y-12">
+        <div className="mx-auto max-w-5xl space-y-12">
           {/* Bio Card */}
           <AnimatedSection>
             <motion.div
@@ -199,22 +202,28 @@ export function AboutSection() {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              <Card className="bg-card/80 backdrop-blur border-white/20 hover:border-white/40 hover:shadow-2xl transition-all duration-300 overflow-hidden group">
+              <Card className="bg-card/80 group overflow-hidden border-white/20 backdrop-blur transition-all duration-300 hover:border-white/40 hover:shadow-2xl">
                 <motion.div
                   className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100"
                   transition={{ duration: 0.3 }}
                 />
-                <CardContent className="p-8 md:p-10 relative">
-                  <div className="space-y-6 text-lg leading-relaxed text-muted-foreground">
+                <CardContent className="relative p-8 md:p-10">
+                  <div className="text-muted-foreground space-y-6 text-lg leading-relaxed">
                     <motion.p
                       initial={{ opacity: 0 }}
                       whileInView={{ opacity: 1 }}
                       viewport={{ once: true }}
                       transition={{ delay: 0.2 }}
                     >
-                      I'm a passionate <span className="text-foreground font-semibold">Cloud Operations Engineer</span> with expertise in building scalable infrastructure and
-                      implementing automation solutions. Currently thriving at <span className="text-white font-semibold">Elanco</span> as a Jr. Hybrid Cloud Ops Engineer, I
-                      focus on managing hybrid cloud infrastructure and optimizing operations for enterprise-scale applications.
+                      I'm a passionate{" "}
+                      <span className="text-foreground font-semibold">
+                        Cloud Operations Engineer
+                      </span>{" "}
+                      with expertise in building scalable infrastructure and implementing automation
+                      solutions. Currently thriving at{" "}
+                      <span className="font-semibold text-white">Elanco</span> as a Jr. Hybrid Cloud
+                      Ops Engineer, I focus on managing hybrid cloud infrastructure and optimizing
+                      operations for enterprise-scale applications.
                     </motion.p>
                     <motion.p
                       initial={{ opacity: 0 }}
@@ -222,9 +231,13 @@ export function AboutSection() {
                       viewport={{ once: true }}
                       transition={{ delay: 0.3 }}
                     >
-                      My journey spans cutting-edge technologies including <span className="text-foreground font-semibold">Azure, Kubernetes, Terraform</span>, and
-                      cloud platforms. I'm particularly enthusiastic about cloud computing, machine learning, and building
-                      innovative solutions that create lasting impact.
+                      My journey spans cutting-edge technologies including{" "}
+                      <span className="text-foreground font-semibold">
+                        Azure, Kubernetes, Terraform
+                      </span>
+                      , and cloud platforms. I'm particularly enthusiastic about cloud computing,
+                      machine learning, and building innovative solutions that create lasting
+                      impact.
                     </motion.p>
                   </div>
                 </CardContent>
@@ -234,7 +247,7 @@ export function AboutSection() {
 
           {/* Core Values Grid */}
           <AnimatedSection delay={0.2}>
-            <div className="grid sm:grid-cols-2 gap-6">
+            <div className="grid gap-6 sm:grid-cols-2">
               {coreValues.map((value, index) => (
                 <motion.div
                   key={value.title}
@@ -244,17 +257,19 @@ export function AboutSection() {
                   transition={{ delay: 0.4 + index * 0.1 }}
                   whileHover={{ scale: 1.05, y: -5 }}
                 >
-                  <Card className="bg-card/60 backdrop-blur border-white/20 hover:border-white/40 hover:shadow-2xl transition-all h-full group">
+                  <Card className="bg-card/60 group h-full border-white/20 backdrop-blur transition-all hover:border-white/40 hover:shadow-2xl">
                     <CardContent className="p-6">
                       <motion.div
-                        className="w-14 h-14 rounded-xl bg-primary/10 border-2 border-primary/20 flex items-center justify-center mb-4 shadow-2xl"
+                        className="bg-primary/10 border-primary/20 mb-4 flex h-14 w-14 items-center justify-center rounded-xl border-2 shadow-2xl"
                         whileHover={{ scale: 1.2 }}
                         transition={{ duration: 0.5 }}
                       >
-                        <value.icon className="w-7 h-7 text-primary" strokeWidth={2} />
+                        <value.icon className="text-primary h-7 w-7" strokeWidth={2} />
                       </motion.div>
-                      <h4 className="font-semibold mb-2 group-hover:text-primary transition-colors">{value.title}</h4>
-                      <p className="text-sm text-muted-foreground">{value.description}</p>
+                      <h4 className="group-hover:text-primary mb-2 font-semibold transition-colors">
+                        {value.title}
+                      </h4>
+                      <p className="text-muted-foreground text-sm">{value.description}</p>
                     </CardContent>
                   </Card>
                 </motion.div>

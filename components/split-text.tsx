@@ -41,12 +41,7 @@ export function SplitText({ text, className = "", delay = 0 }: SplitTextProps) {
   }
 
   return (
-    <motion.span
-      className={className}
-      variants={container}
-      initial="hidden"
-      animate="visible"
-    >
+    <motion.span className={className} variants={container} initial="hidden" animate="visible">
       {letters.map((letter, index) => (
         <motion.span key={index} variants={child}>
           {letter === " " ? "\u00A0" : letter}
@@ -65,7 +60,7 @@ interface RevealTextProps {
 export function RevealText({ text, className = "", delay = 0 }: RevealTextProps) {
   return (
     <motion.div
-      className={`overflow-hidden inline-block ${className}`}
+      className={`inline-block overflow-hidden ${className}`}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true }}

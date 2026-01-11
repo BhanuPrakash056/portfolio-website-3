@@ -20,7 +20,7 @@ export function TiltCard({ children, className = "" }: TiltCardProps) {
 
   const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["12deg", "-12deg"])
   const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-12deg", "12deg"])
-  
+
   // Glow effect position
   const glowX = useTransform(mouseXSpring, [-0.5, 0.5], ["0%", "100%"])
   const glowY = useTransform(mouseYSpring, [-0.5, 0.5], ["0%", "100%"])
@@ -67,7 +67,7 @@ export function TiltCard({ children, className = "" }: TiltCardProps) {
       {/* Animated glow effect that follows cursor */}
       {isHovered && (
         <motion.div
-          className="absolute inset-0 opacity-0 pointer-events-none rounded-lg overflow-hidden"
+          className="pointer-events-none absolute inset-0 overflow-hidden rounded-lg opacity-0"
           style={{
             background: `radial-gradient(600px circle at ${glowX.get()} ${glowY.get()}, rgba(139, 92, 246, 0.15), transparent 40%)`,
           }}
@@ -81,7 +81,7 @@ export function TiltCard({ children, className = "" }: TiltCardProps) {
           }}
         />
       )}
-      
+
       <div
         style={{
           transform: "translateZ(75px)",

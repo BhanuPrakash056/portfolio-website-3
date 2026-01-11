@@ -15,7 +15,17 @@ export function Header() {
       setIsScrolled(window.scrollY > 50)
 
       // Update active section based on scroll position
-      const sections = ["hero", "about", "certifications", "skills", "projects", "experience", "education", "publications", "contact"]
+      const sections = [
+        "hero",
+        "about",
+        "certifications",
+        "skills",
+        "projects",
+        "experience",
+        "education",
+        "publications",
+        "contact",
+      ]
       for (const section of sections) {
         const element = document.getElementById(section)
         if (element) {
@@ -52,24 +62,26 @@ export function Header() {
 
   return (
     <motion.header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-background/90 backdrop-blur-xl border-b border-primary/20 shadow-lg shadow-primary/10" : "bg-transparent"
+      className={`fixed top-0 right-0 left-0 z-50 transition-all duration-300 ${
+        isScrolled
+          ? "bg-background/90 border-primary/20 shadow-primary/10 border-b shadow-lg backdrop-blur-xl"
+          : "bg-transparent"
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
     >
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <motion.button
             onClick={() => scrollToSection("hero")}
-            className="text-xl font-bold relative group"
+            className="group relative text-xl font-bold"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
             <motion.span
-              className="bg-linear-to-r from-primary via-accent to-primary bg-clip-text text-transparent"
+              className="from-primary via-accent to-primary bg-linear-to-r bg-clip-text text-transparent"
               animate={{
                 backgroundPosition: ["0%", "100%", "0%"],
               }}
@@ -85,7 +97,7 @@ export function Header() {
               ARK
             </motion.span>
             <motion.div
-              className="absolute -bottom-1 left-0 right-0 h-0.5 bg-linear-to-r from-primary to-accent"
+              className="from-primary to-accent absolute right-0 -bottom-1 left-0 h-0.5 bg-linear-to-r"
               initial={{ scaleX: 0 }}
               whileHover={{ scaleX: 1 }}
               transition={{ duration: 0.3 }}
@@ -93,7 +105,7 @@ export function Header() {
           </motion.button>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-1">
+          <nav className="hidden items-center gap-1 md:flex">
             {navLinks.map((link, index) => (
               <motion.button
                 key={link.id}
@@ -107,8 +119,8 @@ export function Header() {
               >
                 <span
                   className={`relative z-10 transition-colors duration-300 ${
-                    activeSection === link.id 
-                      ? "text-foreground font-semibold" 
+                    activeSection === link.id
+                      ? "text-foreground font-semibold"
                       : "text-muted-foreground hover:text-foreground"
                   }`}
                 >
@@ -117,19 +129,19 @@ export function Header() {
                 {activeSection === link.id && (
                   <motion.div
                     layoutId="activeSection"
-                    className="absolute inset-0 bg-gradient-to-r from-primary/25 to-accent/25 rounded-lg border-2 border-primary/50 shadow-lg shadow-primary/20"
+                    className="from-primary/25 to-accent/25 border-primary/50 shadow-primary/20 absolute inset-0 rounded-lg border-2 bg-gradient-to-r shadow-lg"
                     transition={{ type: "spring", stiffness: 380, damping: 30 }}
                   />
                 )}
                 {activeSection === link.id && (
                   <motion.div
                     layoutId="activeDot"
-                    className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-primary rounded-full shadow-lg shadow-primary/50"
+                    className="bg-primary shadow-primary/50 absolute -bottom-1 left-1/2 h-1.5 w-1.5 -translate-x-1/2 rounded-full shadow-lg"
                     transition={{ type: "spring", stiffness: 380, damping: 30 }}
                   />
                 )}
                 <motion.div
-                  className="absolute bottom-0 left-0 right-0 h-0.5 bg-linear-to-r from-primary to-accent"
+                  className="from-primary to-accent absolute right-0 bottom-0 left-0 h-0.5 bg-linear-to-r"
                   initial={{ scaleX: 0 }}
                   whileHover={{ scaleX: activeSection !== link.id ? 1 : 0 }}
                   transition={{ duration: 0.3 }}
@@ -139,11 +151,7 @@ export function Header() {
           </nav>
 
           {/* Mobile Menu Button */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5 }}
-          >
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}>
             <Button
               variant="ghost"
               size="icon"
@@ -159,7 +167,7 @@ export function Header() {
                     exit={{ rotate: 90, opacity: 0 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <X className="w-5 h-5" />
+                    <X className="h-5 w-5" />
                   </motion.div>
                 ) : (
                   <motion.div
@@ -169,7 +177,7 @@ export function Header() {
                     exit={{ rotate: -90, opacity: 0 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <Menu className="w-5 h-5" />
+                    <Menu className="h-5 w-5" />
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -181,7 +189,7 @@ export function Header() {
         <AnimatePresence>
           {isMobileMenuOpen && (
             <motion.nav
-              className="md:hidden py-4 border-t border-border overflow-hidden"
+              className="border-border overflow-hidden border-t py-4 md:hidden"
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
@@ -192,9 +200,9 @@ export function Header() {
                   <motion.button
                     key={link.id}
                     onClick={() => scrollToSection(link.id)}
-                    className={`text-left px-4 py-2 text-sm font-medium rounded-lg transition-colors ${
+                    className={`rounded-lg px-4 py-2 text-left text-sm font-medium transition-colors ${
                       activeSection === link.id
-                        ? "bg-primary/20 text-foreground border border-primary/30"
+                        ? "bg-primary/20 text-foreground border-primary/30 border"
                         : "text-muted-foreground hover:bg-muted"
                     }`}
                     initial={{ x: -20, opacity: 0 }}

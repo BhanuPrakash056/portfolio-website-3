@@ -31,7 +31,7 @@ export function ThemeSwitcher() {
   return (
     <motion.button
       onClick={toggleTheme}
-      className="fixed bottom-8 right-8 z-[9997] w-14 h-14 rounded-full bg-gradient-to-r from-primary to-accent flex items-center justify-center shadow-lg shadow-primary/50"
+      className="from-primary to-accent shadow-primary/50 fixed right-8 bottom-8 z-[9997] flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-r shadow-lg"
       whileHover={{ scale: 1.1, rotate: 180 }}
       whileTap={{ scale: 0.95 }}
       initial={{ opacity: 0, y: 20 }}
@@ -43,7 +43,7 @@ export function ThemeSwitcher() {
         animate={{ rotate: isDark ? 0 : 360 }}
         transition={{ duration: 0.6 }}
       >
-        {isDark ? <Moon className="w-6 h-6" /> : <Sun className="w-6 h-6" />}
+        {isDark ? <Moon className="h-6 w-6" /> : <Sun className="h-6 w-6" />}
       </motion.div>
     </motion.button>
   )

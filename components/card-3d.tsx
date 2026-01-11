@@ -18,8 +18,8 @@ function RotatingIcon({ color }: { color: string }) {
     <Float speed={1.5} rotationIntensity={0.3} floatIntensity={0.5}>
       <mesh ref={meshRef}>
         <octahedronGeometry args={[0.5, 0]} />
-        <meshStandardMaterial 
-          color={color} 
+        <meshStandardMaterial
+          color={color}
           emissive={color}
           emissiveIntensity={0.5}
           metalness={0.8}
